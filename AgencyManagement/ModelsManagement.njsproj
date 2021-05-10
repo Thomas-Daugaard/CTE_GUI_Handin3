@@ -49,6 +49,9 @@
     <Content Include="src\components\NewModel.vue">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="src\router.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="src\main.js" />
   </ItemGroup>
   <PropertyGroup>
