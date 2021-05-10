@@ -2,9 +2,9 @@
     <h3>Create Manager </h3>
     <form>
         <div>
-            <input type="text" placeholder="Enter firstname" id="FirstName" name="FirstName" v-model="newmanager.FirstName"></input>
-            <input type="text" placeholder="Enter lastname" id="LastName" name="LastName" v-model="newmanager.LastName"> </input>
-            <input type="text" placeholder="Enter email" id="Email" name="Email" v-model="newmanager.Email"></input>
+            <input type="text" placeholder="Enter firstname" id="FirstName" name="FirstName" v-model="data.FirstName"></input>
+            <input type="text" placeholder="Enter lastname" id="LastName" name="LastName" v-model="data.LastName"> </input>
+            <input type="text" placeholder="Enter email" id="Email" name="Email" v-model="data.Email"></input>
 
             <input type="button" value="Create Manager" id="createbtn" name="createbtn" v-on:click="PostManager" />
         </div>
@@ -14,10 +14,10 @@
 <script>
     new Vue({
         data() {
-            return efmanager: {
-                FirstName: 'Enter FirstName',
-                LastName: 'Enter LastName',
-                Email: 'Enter Email'
+            return {
+                FirstName,
+                LastName,
+                Email
             }
         },
         methods() {
