@@ -13,7 +13,7 @@
 
 <script>
     new Vue({
-        data: function() {
+        data: function () {
             return {
                 newmanager: {
                     FirstName,
@@ -22,8 +22,8 @@
                 }
             }
         },
-        methods() {
-            postmanager: function() {
+        methods: {
+            postmanager: function () {
                 let url = "https://localhost:44368/api/Managers";
 
                 try {
