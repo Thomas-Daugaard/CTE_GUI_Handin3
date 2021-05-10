@@ -1,4 +1,4 @@
-import Home from 'src/components/Home'
+import Login from 'src/components/Login'
 import CreateManager from 'src/components/CreateManager'
 
 
@@ -8,8 +8,8 @@ export default new router({
     routes: [
         {
             path: "/",
-            name: "home",
-            component: Home
+            name: "login",
+            component: Login
         },
         {
             path: "/",
