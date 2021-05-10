@@ -1,4 +1,3 @@
-import Vue from "main.js"
 
 export default new router({
     mode: "history",
