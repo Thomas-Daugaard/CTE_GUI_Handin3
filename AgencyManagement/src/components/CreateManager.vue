@@ -14,38 +14,45 @@
 <script>
     new Vue({
         el: '#app',
-        data: {
-            newmanager{
+        data() {
+            return efmanager: {
                 FirstName: 'Enter FirstName',
                 LastName: 'Enter LastName',
                 Email: 'Enter Email'
-            },
-          
+            }
         },
-        methods:
-        {
-            PostManager: function(){
+        methods() {
+            PostManager: function() {
                 let url = "https://localhost:44368/api/Managers";
 
-                let temp = new EfManager()
-                {
-                        Email = Email,
-                        FirstName = FirstName,
-                        LastName = LastName
-                });
+                try {
 
-                try{
+                    let response = await fetch(url, {
+                        method: "POST",
+                        body: JSON.stringify(this.efmanager),
+                        headers: new Headers({
+                            "Content-Type": "application/json"
+                        })
+                    });
 
-                    let response = await fetch(url, {});
-                    console.log(JSON.stringify(response));
-
+                    if (response.ok) {
+                        let token = await response.json();
+                        localStorage.setItem("token", token.jwt);
+                        // Change view to some other component // …
+                    }
+                    else {
+                        alert("Server returned: " + response.statusText);
+                    }
+                }
+                catch (err) {
+                    alert("Error: " + err);
                 }
 
             }
-  
-        });
+        })
    
 </script>
 
 <style scoped>
+   
 </style>
