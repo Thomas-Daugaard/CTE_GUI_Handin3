@@ -13,9 +13,9 @@
     new Vue({
         el: '#app'
         data: {
-            FirstName: 'FirstName',
-            LastName: 'LastName',
-            Email: 'Email'
+            FirstName: 'Enter FirstName',
+            LastName: 'Enter LastName',
+            Email: 'Enter Email'
         }
         methods:
         {
