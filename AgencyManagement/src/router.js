@@ -1,3 +1,6 @@
+import Home from 'src/components/Home'
+import CreateManager from 'src/components/CreateManager'
+
 
 export default new router({
     mode: "history",
@@ -8,6 +11,11 @@ export default new router({
             name: "home",
             component: Home
         },
+        {
+            path: "/",
+            name: "CreateManager",
+            component: CreateManager
+        },
 
-        }]
+        ]
 })
