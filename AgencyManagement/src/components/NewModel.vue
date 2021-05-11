@@ -1,57 +1,40 @@
 <template>
-    <form>
-        <label for="firstName">First Name: </label>
-        <input v-model="form.FirstName" id="firstName" placeholder="Enter Firstname" />
+    <form method="post" class="form">
+        <input v-model="form.FirstName" class="name formEntry" id="firstName" placeholder="Enter Firstname" />
 
-        <label for="lastName">Last Name: </label>
-        <input v-model="form.LastName" id="lastName" type="text" placeholder="Enter Lastname" />
+        <input v-model="form.LastName" class="name formEntry" id="lastName" type="text" placeholder="Enter Lastname" />
 
-        <label for="email">Email</label>
-        <input v-model="form.Email" type="text" id="email" placeholder="Enter Email" />
+        <input v-model="form.Email" class="name formEntry" type="text" id="email" placeholder="Enter Email" />
 
-        <label for="phoneNo">Phone Number</label>
-        <input v-model="form.PhoneNo" type="text" id="phoneNo" placeholder="Enter Phone number" />
+        <input v-model="form.PhoneNo" class="name formEntry" type="text" id="phoneNo" placeholder="Enter Phone number" />
 
-        <label for="addresLine1">AddresLine1</label>
-        <input v-model="form.AddresLine1" type="text" id="addresLine1" placeholder="Enter Adress" />
+        <input v-model="form.AddresLine1" class="name formEntry" type="text" id="addresLine1" placeholder="Enter Adress" />
 
-        <label for="addresLine2">AddresLine2</label>
-        <input v-model="form.AddresLine2" type="text" id="addresLine2" placeholder="Enter Adress" />
+        <input v-model="form.AddresLine2" class="name formEntry" type="text" id="addresLine2" placeholder="Enter Adress" />
 
-        <label for="zip">Zip-code</label>
-        <input v-model="form.Zip" type="text" id="zip" placeholder="Enter Zip-code" />
+        <input v-model="form.Zip" class="name formEntry" type="text" id="zip" placeholder="Enter Zip-code" />
 
-        <label for="city">City</label>
-        <input v-model="form.City" type="text" id="city" placeholder="Enter City" />
+        <input v-model="form.City" class="name formEntry" type="text" id="city" placeholder="Enter City" />
 
-        <label for="country">Country</label>
-        <input v-model="form.Country" type="text" id="country" placeholder="Enter Country" />
+        <input v-model="form.Country" class="name formEntry" type="text" id="country" placeholder="Enter Country" />
 
-        <label for="birthDate">BirthDate</label>
-        <input v-model="form.BirthDate" type="text" id="birthDate" placeholder="Enter Birth-date" />
+        <input v-model="form.BirthDate" class="name formEntry" type="text" id="birthDate" placeholder="Enter Birth-date" />
 
-        <label for="nationality">Nationality</label>
-        <input v-model="form.Nationality" type="text" id="nationality" placeholder="Enter Nationality" />
+        <input v-model="form.Nationality" class="name formEntry" type="text" id="nationality" placeholder="Enter Nationality" />
 
-        <label for="height">Height</label>
-        <input v-model="form.Height" type="text" id="height" placeholder="Enter Height" />
+        <input v-model="form.Height" class="name formEntry" type="text" id="height" placeholder="Enter Height" />
 
-        <label for="shoeSize">ShoeSize</label>
-        <input v-model="form.ShoeSize" type="text" id="shoeSize" placeholder="Enter Shoe Size" />
+        <input v-model="form.ShoeSize" class="name formEntry" type="text" id="shoeSize" placeholder="Enter Shoe Size" />
 
-        <label for="hairColor">HairColor</label>
-        <input v-model="form.HairColor" type="text" id="hairColor" placeholder="Enter Hair color" />
+        <input v-model="form.HairColor" class="name formEntry" type="text" id="hairColor" placeholder="Enter Hair color" />
 
-        <label for="eyeColor">EyeColor</label>
-        <input v-model="form.EyeColor" type="text" id="eyeColor" placeholder="Enter Eye color" />
+        <input v-model="form.EyeColor" class="name formEntry" type="text" id="eyeColor" placeholder="Enter Eye color" />
 
-        <label for="comments">Comments</label>
-        <input v-model="form.Comments" type="text" id="comments" placeholder="Enter Comments" />
+        <input v-model="form.Comments" class="name formEntry" type="text" id="comments" placeholder="Enter Comments" />
 
-        <label for="password">Password</label>
-        <input v-model="form.Password" type="text" id="password" placeholder="Enter Password" />
+        <input v-model="form.Password" class="name formEntry" type="text" id="password" placeholder="Enter Password" />
 
-        <input type="button" value="Create Model" id="modelCreationbtn" v-on:click="PostModel" />
+        <input type="button" class="submit formEntry" value="Create Model" id="modelCreationbtn" v-on:click="PostModel" />
     </form>
 </template>
 

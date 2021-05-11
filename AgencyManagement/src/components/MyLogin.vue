@@ -1,12 +1,8 @@
 <template>
-    <form method="post">
-        <label>Username:</label>
-        <input type="text" v-model="form.email" v-on:click="form.email = ''"/>
-        <br />
-        <label>Password:</label>
-        <input type="text" v-model="form.password" v-on:click="form.password = ''"/>
-        <br />
-        <input type="button" value="Submit" v-on:click="login" />
+    <form method="post" class="form">
+        <input type="text" class="name formEntry" v-model="form.email" v-on:click="form.email = ''"/>
+        <input type="text" class="name formEntry" v-model="form.password" v-on:click="form.password = ''"/>
+        <input type="button" class="submit formEntry" value="Submit" v-on:click="login" />
     </form>
 </template>
 
@@ -16,8 +12,8 @@
         data() {
             return {
                 form: {
-                    email: 'Input e-mail',
-                    password: 'Input password'
+                    email: 'Enter e-mail',
+                    password: 'Enter password'
                 }
             }
         },
