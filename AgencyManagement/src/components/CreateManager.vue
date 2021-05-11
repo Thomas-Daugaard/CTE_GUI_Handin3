@@ -98,9 +98,9 @@
 
         .name:hover {
             border-bottom: 5px solid #0e3721;
-            height: 30px;
+            height: 45px;
             width: 380px;
-            transition: ease 0.5s;
+            transition: ease 0.6s;
         }
 
     .submit {
