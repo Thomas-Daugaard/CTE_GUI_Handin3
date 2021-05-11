@@ -12,39 +12,38 @@
 </template>
 
 <script>
-    new Vue({
-        el: '#app',
-        data: {
-            newmanager{
-                FirstName: 'Enter FirstName',
-                LastName: 'Enter LastName',
-                Email: 'Enter Email'
+    export default {
+        name: 'create-manager',
+        data() {
+            return {
+                newmanager: {
+                    FirstName: 'Enter FirstName',
+                    LastName: 'Enter LastName',
+                    Email: 'Enter Email'
+                }
+            }
             },
-          
-        },
         methods:
         {
-            PostManager: function(){
+            PostManager: function () {
                 let url = "https://localhost:44368/api/Managers";
 
-                let temp = new EfManager()
-                {
+                let temp = new EfManager(
+                    {
                         Email = Email,
                         FirstName = FirstName,
                         LastName = LastName
-                });
+                    });
 
-                try{
+                try {
 
                     let response = await fetch(url, {});
                     console.log(JSON.stringify(response));
 
                 }
-
             }
-  
-        });
-   
+        }
+    }
 </script>
 
 <style scoped>

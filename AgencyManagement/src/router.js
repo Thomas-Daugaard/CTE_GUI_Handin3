@@ -1,7 +1,8 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Login from 'src/components/Login'
-import CreateManager from 'src/components/CreateManager'
+import CreateManager from './components/CreateManager.vue'
+import myLogin from './components/MyLogin.vue'
+
 
 Vue.use(Router);
 
@@ -11,8 +12,8 @@ export default new Router({
     routes: [
         {
             path: "/",
-            name: "login",
-            component: Login
+            name: "Login",
+            component: myLogin
         },
         {
             path: "/",

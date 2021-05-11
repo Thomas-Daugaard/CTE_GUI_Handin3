@@ -10,14 +10,17 @@
 
 <script>
     export default {
+        name: 'my-login',
         data() {
             return {
-                email: "Input email",
-                password
+                form: {
+                    email: "Input email",
+                    password
+                }
             }
         },
         methods: {
-            login: async login() {
+            login: login() {
                 let url = "https://localhost:44368/api/account/login";
                 try {
                     let response = await fetch(url, {
@@ -36,11 +39,11 @@
                     }
                 } catch (err) {
                     alert("Error: " + err);
-                }
-                return;
+
+                    return;
             }
         }
-    }
+    
 </script>
 
 <style scoped>
