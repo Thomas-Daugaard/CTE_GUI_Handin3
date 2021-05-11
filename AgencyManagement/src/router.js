@@ -16,7 +16,7 @@ export default new Router({
             component: myLogin
         },
         {
-            path: "/manage",
+            path: "/CreateManager",
             name: "CreateManager",
             component: createManager
         },
