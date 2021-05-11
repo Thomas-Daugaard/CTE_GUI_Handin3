@@ -1,22 +1,21 @@
 <template>
     <div id="app">
-        <b-navbar class="mynavbar" toggleable="lg" type="dark" variant="dark">
-            <b-navbar-brand class="mylink" href="login">Login</b-navbar-brand>
+        <div id="nav">
+            <b-navbar toggleable="lg" type="dark" variant="dark">
+                <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
-            <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
-            <b-collapse id="nav-collapse" is-nav>
-                <b-navbar-nav>
-                    <b-nav-item href="#">Link</b-nav-item>
-                    <b-nav-item href="#" disabled>Disabled</b-nav-item>
-                </b-navbar-nav>
-            </b-collapse>
-        </b-navbar>
+                <b-collapse id="nav-collapse" is-nav>
+                    <b-navbar-nav>
+                        <b-nav-item><router-link :to="'/login'">Login</router-link></b-nav-item>
+                        <b-nav-item><router-link :to="'/manage'">Manage</router-link></b-nav-item>
+                        <b-nav-item><router-link :to="'/model'">Model</router-link></b-nav-item>
+                    </b-navbar-nav>
+                </b-collapse>
+            </b-navbar>
+        </div>
+        <router-view/>
     </div>
 </template>
-<div id="main">
-
-</div>
 
 <script>
     import createManager from './components/CreateManager.vue'
