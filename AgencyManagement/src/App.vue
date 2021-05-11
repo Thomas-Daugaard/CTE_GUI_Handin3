@@ -1,7 +1,7 @@
 <template>
     <div id="app">
-        <b-navbar toggleable="lg" type="primary" variant="info">
-            <b-navbar-brand href="login">Login</b-navbar-brand>
+        <b-navbar class="mynavbar" toggleable="lg" type="dark" variant="dark">
+            <b-navbar-brand class="mylink" href="login">Login</b-navbar-brand>
 
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -38,5 +38,8 @@ export default {
 }
 </script>
 <style scoped>
-
+    .mynavbar {
+        background: black;
+        color: black;
+    }
 </style>
