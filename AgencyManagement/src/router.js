@@ -25,11 +25,6 @@ export default new Router({
             path: "/",
             name: "NewModel",
             component: newModel
-        },
-        {
-            path: '*',
-            name: 'Login',
-            component: myLogin
         }
 
         ]
