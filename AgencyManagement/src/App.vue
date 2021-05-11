@@ -40,8 +40,8 @@ export default {
 }
 </script>
 <style scoped>
-    .mynavbar {
-        background: black;
-        color: black;
+    a {
+        text-decoration: none;
+        color: white;
     }
 </style>
