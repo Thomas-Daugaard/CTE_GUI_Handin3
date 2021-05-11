@@ -20,6 +20,11 @@ export default new Router({
             name: "CreateManager",
             component: CreateManager
         },
+        {
+            path: "/",
+            name: "newModel",
+            component: NewModel
+        },
 
         ]
 })

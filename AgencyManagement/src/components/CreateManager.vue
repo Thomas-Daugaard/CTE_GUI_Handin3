@@ -1,50 +1,58 @@
 <template>
     <h3>Create Manager </h3>
     <form>
-        <div id="app">
-            <input type="text" placeholder="Enter firstname" id="FirstName" name="FirstName" v-model="newmanager.FirstName"></input>
-            <input type="text" placeholder="Enter lastname" id="LastName" name="LastName" v-model="newmanager.LastName"> </input>
-            <input type="text" placeholder="Enter email" id="Email" name="Email" v-model="newmanager.Email"></input>
+        <div>
+            <input type="text" placeholder="Enter firstname" id="FirstName" name="FirstName" v-model="newmanager.FirstName"/>
+            <input type="text" placeholder="Enter lastname" id="LastName" name="LastName" v-model="newmanager.LastName"/>
+            <input type="text" placeholder="Enter email" id="Email" name="Email" v-model="newmanager.Email"/>
 
-            <input type="button" value="Create Manager" id="createbtn" name="createbtn" v-on:click="PostManager" />
+            <input type="button" value="Create Manager" id="createbtn" name="createbtn" v-on:click="postmanager" />
         </div>
     </form>
 </template>
 
 <script>
-    export default {
-        name: 'create-manager',
-        data() {
+    new Vue({
+        data: function () {
             return {
                 newmanager: {
-                    FirstName: 'Enter FirstName',
-                    LastName: 'Enter LastName',
-                    Email: 'Enter Email'
+                    FirstName,
+                    LastName,
+                    Email
                 }
             }
-            },
-        methods:
-        {
-            PostManager: function () {
+        },
+        methods: {
+            postmanager: function () {
                 let url = "https://localhost:44368/api/Managers";
-
-                let temp = new EfManager(
-                    {
-                        Email = Email,
-                        FirstName = FirstName,
-                        LastName = LastName
-                    });
 
                 try {
 
-                    let response = await fetch(url, {});
-                    console.log(JSON.stringify(response));
+                    let response = await fetch(url, {
+                        method: "POST",
+                        body: JSON.stringify(this.efmanager),
+                        headers: new Headers({
+                            "Content-Type": "application/json"
+                        })
+                    });
 
+                    if (response.ok) {
+                        let token = await response.json();
+                        localStorage.setItem("token", token.jwt);
+                        // Change view to some other component // …
+                    }
+                    else {
+                        alert("Server returned: " + response.statusText);
+                    }
+                }
+                catch (err) {
+                    alert("Error: " + err);
                 }
             }
-        }
-    }
+        })
+   
 </script>
 
 <style scoped>
+   input{background-color:black; color:white}
 </style>
