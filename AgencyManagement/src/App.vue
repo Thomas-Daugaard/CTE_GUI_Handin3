@@ -8,7 +8,7 @@
                     <b-navbar-nav>
                         <b-nav-item><router-link :to="'/login'">Login</router-link></b-nav-item>
                         <b-nav-item><router-link :to="'/manage'">Manage</router-link></b-nav-item>
-                        <b-nav-item><router-link :to="'/model'">Model</router-link></b-nav-item>
+                        <b-nav-item><router-link :to="'/model'">Models</router-link></b-nav-item>
                     </b-navbar-nav>
                 </b-collapse>
             </b-navbar>
@@ -40,8 +40,8 @@ export default {
 }
 </script>
 <style scoped>
-    .mynavbar {
-        background: black;
-        color: black;
+    a {
+        text-decoration: none;
+        color: white;
     }
 </style>
