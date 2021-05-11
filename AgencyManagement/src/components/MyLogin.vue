@@ -2,8 +2,10 @@
     <form method="post">
         <label>Username:</label>
         <input type="text" v-model="email" />
+        <br />
         <label>Password:</label>
         <input type="text" v-model="password" />
+        <br />
         <input type="button" value="Submit" v-on:click="login" />
     </form>
 </template>
@@ -33,7 +35,9 @@
                     if (response.ok) {
                         let token = await response.json();
                         localStorage.setItem("token", token.jwt);
+
                         // Change view to some other component // …
+
                     } else {
                         alert("Server returned: " + response.statusText);
                     }
