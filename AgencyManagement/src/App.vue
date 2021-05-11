@@ -36,7 +36,7 @@ export default {
                 this.$router.push({ name: 'Login' });
             },
             createManager: function () {
-                this.$router.push({ path: '/manage' });
+                this.$router.push({ path: '/CreateManager' });
             }
         }
 }
