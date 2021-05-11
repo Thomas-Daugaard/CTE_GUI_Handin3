@@ -32,7 +32,7 @@ namespace ModelsApi
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddCors();
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("ThomasConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("CamillaConnection")));
             services.AddControllers();
 
             // configure strongly typed settings objects
