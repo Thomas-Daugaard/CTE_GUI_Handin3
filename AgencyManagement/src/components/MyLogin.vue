@@ -36,9 +36,7 @@
                         let token = await response.json();
                         localStorage.setItem("token", token.jwt);
 
-
-                        // Change view to some other component !!!! // …
-
+                        this.$router.push('/CreateManager');
 
                     } else {
                         alert("Server returned: " + response.statusText);
