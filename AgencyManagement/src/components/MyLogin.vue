@@ -36,7 +36,9 @@
                         let token = await response.json();
                         localStorage.setItem("token", token.jwt);
 
-                        // Change view to some other component // …
+
+                        // Change view to some other component !!!! // …
+
 
                     } else {
                         alert("Server returned: " + response.statusText);
