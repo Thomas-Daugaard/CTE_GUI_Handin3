@@ -9,7 +9,7 @@
                 <b-navbar-nav>
                     <b-nav-item href="#">Link</b-nav-item>
                     <b-nav-item href="#" disabled>Disabled</b-nav-item>
-                    <b-nav-item href="createManager">Create Manager</b-nav-item>
+                    <b-nav-item v-on:click="createManager">Create Manager</b-nav-item>
                 </b-navbar-nav>
             </b-collapse>
         </b-navbar>
@@ -34,6 +34,9 @@ export default {
         methods: {
             login: function () {
                 this.$router.push({ name: 'Login' });
+            },
+            createManager: function () {
+                this.$router.push({ path: '/manage' });
             }
         }
 }
