@@ -1,7 +1,8 @@
 import Vue from "vue";
 import Router from "vue-router";
-import CreateManager from './components/CreateManager.vue'
+import createManager from './components/CreateManager.vue'
 import myLogin from './components/MyLogin.vue'
+import newModel from './components/NewModel.vue'
 
 
 Vue.use(Router);
@@ -18,12 +19,12 @@ export default new Router({
         {
             path: "/",
             name: "CreateManager",
-            component: CreateManager
+            component: createManager
         },
         {
             path: "/",
-            name: "newModel",
-            component: NewModel
+            name: "NewModel",
+            component: newModel
         },
 
         ]

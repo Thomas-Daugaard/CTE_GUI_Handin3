@@ -1,29 +1,27 @@
 <template>
-    <h3>Create Manager </h3>
     <form>
-        <div>
-            <input type="text" placeholder="Enter firstname" id="FirstName" name="FirstName" v-model="newmanager.FirstName"/>
-            <input type="text" placeholder="Enter lastname" id="LastName" name="LastName" v-model="newmanager.LastName"/>
-            <input type="text" placeholder="Enter email" id="Email" name="Email" v-model="newmanager.Email"/>
+            <input type="text" placeholder="Enter firstname" v-model="newmanager.FirstName"/>
+            <input type="text" placeholder="Enter lastname" v-model="newmanager.LastName"/>
+            <input type="text" placeholder="Enter email" v-model="newmanager.Email"/>
 
             <input type="button" value="Create Manager" id="createbtn" name="createbtn" v-on:click="postmanager" />
-        </div>
     </form>
 </template>
 
 <script>
-    new Vue({
-        data: function () {
+    export default {
+        name: 'create-manager',
+        data() {
             return {
                 newmanager: {
-                    FirstName,
-                    LastName,
-                    Email
+                    firstName: '',
+                    lastName: '',
+                    email: ''
                 }
             }
         },
         methods: {
-            postmanager: function () {
+            postmanager: async function () {
                 let url = "https://localhost:44368/api/Managers";
 
                 try {
@@ -49,7 +47,8 @@
                     alert("Error: " + err);
                 }
             }
-        })
+        }
+    }
    
 </script>
 

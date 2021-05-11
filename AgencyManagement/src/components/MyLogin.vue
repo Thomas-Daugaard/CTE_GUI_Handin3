@@ -20,7 +20,7 @@
             }
         },
         methods: {
-            login: login() {
+            login: async function() {
                 let url = "https://localhost:44368/api/account/login";
                 try {
                     let response = await fetch(url, {
@@ -39,10 +39,11 @@
                     }
                 } catch (err) {
                     alert("Error: " + err);
-
-                    return;
+                }
+                return;
             }
         }
+    }
     
 </script>
 
