@@ -53,5 +53,5 @@
 </script>
 
 <style scoped>
-   input{background-color:black; color:white}
+   input{background-color:white; color:black}
 </style>
