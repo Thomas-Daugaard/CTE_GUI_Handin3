@@ -1,15 +1,18 @@
 <template>
     <form class="form">
         <div>
-            <input class="name formEntry" type="text" placeholder="Enter firstname" v-model="newmanager.FirstName" />
+            <input class="name formEntry" type="text" placeholder="Enter firstname" v-model="newmanager.firstName" />
         </div>
-        <div >
-            <input class="name formEntry" type="text" placeholder="Enter lastname" v-model="newmanager.LastName" />
+        <div>
+            <input class="name formEntry" type="text" placeholder="Enter lastname" v-model="newmanager.lastName" />
         </div>
-        <div >
-            <input class="name formEntry" type="text" placeholder="Enter email" v-model="newmanager.Email" />
+        <div>
+            <input class="name formEntry" type="text" placeholder="Enter email" v-model="newmanager.email" />
         </div>
-        <div >
+        <div>
+            <input class="name formEntry" type="text" placeholder="Enter password" v-model="newmanager.password" />
+        </div>
+        <div>
             <input class="submit formEntry" type="button" value="Create Manager" name="createbtn" v-on:click="postmanager" />
         </div>
     </form>
@@ -23,7 +26,8 @@
                 newmanager: {
                     firstName: '',
                     lastName: '',
-                    email: ''
+                    email: '',
+                    password:''
                 }
             }
         },
@@ -35,7 +39,7 @@
 
                     let response = await fetch(url, {
                         method: "POST",
-                        body: JSON.stringify(this.efmanager),
+                        body: JSON.stringify(this.newmanager),
                         headers: new Headers({
                             "Content-Type": "application/json"
                         })
@@ -44,7 +48,7 @@
                     if (response.ok) {
                         let token = await response.json();
                         localStorage.setItem("token", token.jwt);
-                        // Change view to some other component // …
+                        this.$router.push('/CreateManager');
                     }
                     else {
                         alert("Server returned: " + response.statusText);
@@ -123,4 +127,14 @@
         border: none;
         transition: all 0.5s ease 0s;
     }
+
+    @keyframes bounce {
+        0% {
+            tranform: translate(0, 4px);
+        }
+
+        50% {
+            transform: translate(0, 8px);
+        }
+    } 
 </style>
