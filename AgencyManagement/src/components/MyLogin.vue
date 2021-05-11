@@ -1,10 +1,10 @@
 <template>
     <form method="post">
         <label>Username:</label>
-        <input type="text" v-model="email" />
+        <input type="text" v-model="form.email" v-on:click="form.email = ''"/>
         <br />
         <label>Password:</label>
-        <input type="text" v-model="password" />
+        <input type="text" v-model="form.password" v-on:click="form.password = ''"/>
         <br />
         <input type="button" value="Submit" v-on:click="login" />
     </form>
@@ -16,8 +16,8 @@
         data() {
             return {
                 form: {
-                    email: "Input email",
-                    password
+                    email: 'Input e-mail',
+                    password: 'Input password'
                 }
             }
         },

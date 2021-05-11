@@ -4,7 +4,6 @@ import createManager from './components/CreateManager.vue'
 import myLogin from './components/MyLogin.vue'
 import newModel from './components/NewModel.vue'
 
-
 Vue.use(Router);
 
 export default new Router({
@@ -12,17 +11,17 @@ export default new Router({
     base: process.env.BASE_URL,
     routes: [
         {
-            path: "/",
+            path: "/login",
             name: "Login",
             component: myLogin
         },
         {
-            path: "/",
+            path: "/manage",
             name: "CreateManager",
             component: createManager
         },
         {
-            path: "/",
+            path: "/model",
             name: "NewModel",
             component: newModel
         }
