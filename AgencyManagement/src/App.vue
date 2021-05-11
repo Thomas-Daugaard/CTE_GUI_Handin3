@@ -13,7 +13,8 @@
                 </b-collapse>
             </b-navbar>
         </div>
-        <router-view/>
+        
+        <router-view id="content" />
     </div>
 </template>
 
@@ -43,5 +44,22 @@ export default {
     a {
         text-decoration: none;
         color: white;
+        padding-left: 10px;
     }
+    .floatright{
+        float: right;
+        padding-left: 50px;
+    }
+</style>
+
+<style>
+    #content{
+        padding-top: 20px;
+        padding-left: 20px;
+        background: Khaki;
+    }
+    body {
+        background-color: khaki;
+    }
+
 </style>
