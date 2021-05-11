@@ -9,6 +9,7 @@
                         <b-nav-item><router-link :to="'/login'">Login</router-link></b-nav-item>
                         <b-nav-item><router-link :to="'/CreateManager'">Manage</router-link></b-nav-item>
                         <b-nav-item><router-link :to="'/model'">Model</router-link></b-nav-item>
+                        <img height="40" class="floatright" src="../Images/logo.png" />
                     </b-navbar-nav>
                 </b-collapse>
             </b-navbar>
@@ -50,6 +51,9 @@ export default {
         float: right;
         padding-left: 50px;
     }
+    b-navbar {
+        text-align: center;
+    }
 </style>
 
 <style>
@@ -58,8 +62,8 @@ export default {
         padding-left: 20px;
         background: Khaki;
     }
-    body {
+
+    html {
         background-color: khaki;
     }
-
 </style>
