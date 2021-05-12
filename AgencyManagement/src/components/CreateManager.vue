@@ -40,15 +40,15 @@
                     let response = await fetch(url, {
                         method: "POST",
                         body: JSON.stringify(this.newmanager),
+                        credentials: "include",
                         headers: new Headers({
-                            "Authorization": "Bearer",
+                            "Authorization": "Bearer" + localStorage.getItem("token"),
                             "Content-Type": "application/json"
                         })
                     });
 
                     if (response.ok) {
-                        let token = await response.json();
-                        localStorage.getItem("token", token.jwt);
+                        //let token = await response.json();
                         this.$router.push('/CreateManager');
                     }
                     else {
