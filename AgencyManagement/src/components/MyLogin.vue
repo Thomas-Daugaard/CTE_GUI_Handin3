@@ -32,7 +32,7 @@
                         let token = await response.json();
                         localStorage.setItem("token", token.jwt);
 
-                        this.$router.push('/CreateManager');
+                        this.$router.push('/index');
 
                     } else {
                         alert("Server returned: " + response.statusText);
@@ -41,8 +41,13 @@
                     alert("Error: " + err);
                 }
                 return;
+            },
+            reload: async function() {
+                this.render = false;
+                await this.$nextTick();
+                this.render = true;
             }
-        }
+        },
     }
     
 </script>

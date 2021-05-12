@@ -44,53 +44,53 @@
         data() {
             return {
                 form: {
-                    newModel:{
-                    firstName: '',
-                    lastName: '',
-                    email: '',
-                    phoneNo: '',
-                    adressline1: '',
-                    adressline2: '',
-                    zip: '',
-                    city: '',
-                    country: '',
-                    birthDate: null,
-                    nationality: '',
-                    height: 0,
-                    shoeSize: 0,
-                    hairColor: '',
-                    eyeColor: '',
-                    comments: '',
-                    password: '',
+                    newModel: {
+                        firstName: '',
+                        lastName: '',
+                        email: '',
+                        phoneNo: '',
+                        adressline1: '',
+                        adressline2: '',
+                        zip: '',
+                        city: '',
+                        country: '',
+                        birthDate: null,
+                        nationality: '',
+                        height: 0,
+                        shoeSize: 0,
+                        hairColor: '',
+                        eyeColor: '',
+                        comments: '',
+                        password: '',
                     }
-        }
                 }
-    },
-    methods: {
-        postModel: async function() {
-            let url = "https://localhost:44368/api/account/Models";
-            try {
-                let response = await fetch(url, {
-                    method: "POST",
-                    body: JSON.stringify(this.newModel),
-                    headers: new Headers({
-                        "Content-Type": "application/json"
-                    })
-                });
+            }
+        },
+        methods: {
+            postModel: async function () {
+                let url = "https://localhost:44368/api/account/Models";
+                try {
+                    let response = await fetch(url, {
+                        method: "POST",
+                        body: JSON.stringify(this.newModel),
+                        headers: new Headers({
+                            "Content-Type": "application/json"
+                        })
+                    });
 
-                if (response.ok) {
-                    let token = await response.json();
-                    localStorage.setItem("token", token.jwt);
-                    // Change view to some other component // …
+                    if (response.ok) {
+                        let token = await response.json();
+                        localStorage.setItem("token", token.jwt);
+                        // Change view to some other component // …
+                    }
+                    else {
+                        alert("Server returned: " + response.statusText);
+                    }
                 }
-                else {
-                    alert("Server returned: " + response.statusText);
+                catch (err) {
+                    alert("Error: " + err);
                 }
-            }
-            catch (err) {
-                alert("Error: " + err);
-            }
-            return;
+                return;
             }
         }
     }
