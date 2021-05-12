@@ -6,7 +6,7 @@
                 {{model.firstName}} {{model.lastName}}
             </li>
         </ul>
-        <input class="submit formEntry" type="button" value="Create Model" name="createbtn" v-on:click="createModel" />
+        <br />
     </form>
 </template>
 
