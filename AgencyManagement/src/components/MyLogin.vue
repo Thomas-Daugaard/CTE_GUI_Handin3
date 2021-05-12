@@ -41,8 +41,13 @@
                     alert("Error: " + err);
                 }
                 return;
+            },
+            reload: async function() {
+                this.render = false;
+                await this.$nextTick();
+                this.render = true;
             }
-        }
+        },
     }
     
 </script>

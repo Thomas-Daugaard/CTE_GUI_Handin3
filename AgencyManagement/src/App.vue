@@ -7,13 +7,15 @@
                 <b-collapse id="nav-collapse" is-nav>
                     <b-navbar-nav>
                         <b-nav-item><router-link :to="'/login'">Login</router-link></b-nav-item>
-                        <b-nav-item><router-link :to="'/CreateManager'">Manage</router-link></b-nav-item>
-                        <b-nav-item><router-link :to="'/model'">Model</router-link></b-nav-item>
+                        <b-nav-item v-if="authorize"><router-link :to="'/CreateManager'">Manage</router-link></b-nav-item>
+                        <b-nav-item v-if="authorize"><router-link :to="'/model'">Model</router-link></b-nav-item>
                         <img height="40" class="floatright" src="../Images/logo.png" />
+                        <b-nav-item v-on:click="logout">Logout</b-nav-item>
                     </b-navbar-nav>
                 </b-collapse>
             </b-navbar>
         </div>
+        <p></p>
 
         <router-view id="content" />
     </div>
@@ -30,15 +32,19 @@
             myLogin,
             newModel
         },
+        data() {
+            return {
+                authorize: localStorage.getItem('token') != null
+            }
+        },
         methods: {
-            login: function () {
-                this.$router.push({ name: 'Login' });
-            },
-            createManager: function () {
-                this.$router.push({ path: '/CreateManager' });
+            logout: function () {
+                localStorage.removeItem("token");
+                return;
             }
         }
     }
+    
 </script>
 <style scoped>
     a {
