@@ -16,7 +16,7 @@
         },
         methods: {
             getModels: function () {
-                let url = "https://localhost:44368/api/ListModels";
+                let url = "https://localhost:44368/api/Models";
                 fetch(url, {
                     method: 'GET',
                     credentials: 'include',
