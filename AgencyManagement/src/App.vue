@@ -14,7 +14,7 @@
                 </b-collapse>
             </b-navbar>
         </div>
-        
+
         <router-view id="content" />
     </div>
 </template>
@@ -23,13 +23,12 @@
     import createManager from './components/CreateManager.vue'
     import myLogin from './components/MyLogin.vue'
     import newModel from './components/NewModel.vue'
-
-export default {
-  name: 'app',
-  components: {
-    createManager,
-    myLogin,
-    newModel
+    export default {
+        name: 'app',
+        components: {
+            createManager,
+            myLogin,
+            newModel
         },
         methods: {
             login: function () {
@@ -39,7 +38,7 @@ export default {
                 this.$router.push({ path: '/CreateManager' });
             }
         }
-}
+    }
 </script>
 <style scoped>
     a {
@@ -47,24 +46,26 @@ export default {
         color: white;
         padding-left: 10px;
     }
-    .floatright{
+
+    .floatright {
         float: right;
         padding-left: 50px;
     }
+
     b-navbar {
         text-align: center;
     }
 </style>
 
 <style>
-    #content{
+    #content {
         padding-top: 20px;
         padding-left: 20px;
-        background: Khaki;
+        background: steelblue;
     }
 
     html {
-        background-color: khaki;
+        background-color: lightpink;
     }
 
     input {
@@ -73,9 +74,8 @@ export default {
         padding: 5px 5px 5px 5px;
     }
 
-   #btn{
-
-   }
+    #btn {
+    }
 
     .form {
         background: #fff;
@@ -139,5 +139,5 @@ export default {
         50% {
             transform: translate(0, 8px);
         }
-    } 
+    }
 </style>
