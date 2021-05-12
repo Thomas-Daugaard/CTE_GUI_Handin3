@@ -1,7 +1,7 @@
 <template>
     <form class="form">
         <ul>
-            <li v-for="model in models" v-bind_key="model.id" v-bind:firstName="model.firstName" v-bind:lastName="model.lastName">
+            <li v-for="(model, index) in models" :key="index">
                 {{model.firstName}} {{model.lastName}}
             </li>
         </ul>
@@ -12,12 +12,15 @@
     export default {
         name: 'list-models',
         data() {
-            models: []
+            return {
+                models: []
+            }
         },
         methods: {
-            getModels: function () {
-                let url = "https://localhost:44368/api/Models";
-                fetch(url, {
+            getModels: async function () {
+                let url = "https://localhost:44368/api/models";
+
+                await fetch(url, {
                     method: 'GET',
                     credentials: 'include',
                     headers: {
@@ -25,11 +28,13 @@
                         'Content-Type': 'application/json'
                     }
 
-                }).then(responseJson => {
-                    this.response = responseJson
-
-                }).catch(error => alert('Something bad happened: ' + error));
+                }).then(res => res.json())
+                    .then(res => this.jobs = res.data)
+                    .catch(error => alert("Error" + error));
             }
+        },
+        mounted() {
+            this.getModels()
         }
     }
 
