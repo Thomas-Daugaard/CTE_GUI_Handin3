@@ -1,7 +1,6 @@
 <template>
     <form class="form">
         <ul>
-            <li v-for="(model, index) in models" :key="index">
             <li v-for="model in models" v-bind:key="model.id" v-bind:firstName="model.firstName" v-bind:lastName="model.lastName">
                 {{model.firstName}} {{model.lastName}}
             </li>
