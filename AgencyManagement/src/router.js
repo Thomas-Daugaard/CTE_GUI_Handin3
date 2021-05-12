@@ -35,7 +35,7 @@ export default new Router({
         {
             path: "/listJobs",
             name: "listJobs",
-            component: alljobs
+            component: listJobs
         }
 
         ]
