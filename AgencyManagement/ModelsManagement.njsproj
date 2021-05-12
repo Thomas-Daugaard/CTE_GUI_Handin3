@@ -39,7 +39,7 @@
     <Content Include="src\components\Job.vue">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="src\components\ListModel.vue">
+    <Content Include="src\components\listJobs.vue">
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\components\MyLogin.vue">

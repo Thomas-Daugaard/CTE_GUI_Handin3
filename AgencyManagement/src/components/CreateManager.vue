@@ -46,7 +46,7 @@
                 }).then(res => res.json()).catch(error => alert("Error" + error));
 
              
-                    //this.$router.push('/model');
+                    this.$router.push('/app');
                
             }
         }
