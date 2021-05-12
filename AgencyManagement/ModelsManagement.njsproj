@@ -36,9 +36,6 @@
     <Content Include="public\favicon.ico" />
     <Content Include="public\index.html" />
     <Content Include="src\App.vue" />
-    <Content Include="src\components\Index.vue">
-      <SubType>Code</SubType>
-    </Content>
     <Content Include="src\components\MyLogin.vue">
       <SubType>Code</SubType>
     </Content>

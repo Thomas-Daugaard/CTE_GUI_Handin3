@@ -3,6 +3,7 @@
         <input type="text" class="name formEntry" v-model="form.email" v-on:click="form.email = ''"/>
         <input type="text" class="name formEntry" v-model="form.password" v-on:click="form.password = ''"/>
         <input type="button" class="submit formEntry" value="Submit" v-on:click="login" />
+
     </form>
 </template>
 
@@ -17,6 +18,7 @@
                 }
             }
         },
+
         methods: {
             login: async function() {
                 let url = "https://localhost:44368/api/account/login";
@@ -32,7 +34,7 @@
                         let token = await response.json();
                         localStorage.setItem("token", token.jwt);
 
-                        this.$router.push('/index');
+                        this.$root.$emit('authorize')
 
                     } else {
                         alert("Server returned: " + response.statusText);
@@ -41,13 +43,8 @@
                     alert("Error: " + err);
                 }
                 return;
-            },
-            reload: async function() {
-                this.render = false;
-                await this.$nextTick();
-                this.render = true;
             }
-        },
+        }
     }
     
 </script>

@@ -34,14 +34,20 @@
         },
         data() {
             return {
-                authorize: localStorage.getItem('token') != null
+                authorize: false
             }
         },
         methods: {
             logout: function () {
                 localStorage.removeItem("token");
+                this.authorize = false;
                 return;
             }
+        },
+        mounted() {
+            this.$root.$on('authorize', () => 
+                this.authorize = true
+            )
         }
     }
     
