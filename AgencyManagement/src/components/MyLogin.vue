@@ -32,7 +32,7 @@
                         let token = await response.json();
                         localStorage.setItem("token", token.jwt);
 
-                        this.$router.push('/CreateManager');
+                        this.$router.push('/index');
 
                     } else {
                         alert("Server returned: " + response.statusText);
