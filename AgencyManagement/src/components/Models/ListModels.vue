@@ -31,7 +31,7 @@
                     })
 
                 }).then(res => res.json())
-                    .then(res => this.jobs = res)
+                    .then(res => this.models = res)
                     .catch(error => alert("Error" + error));
             }
         },
