@@ -112,7 +112,7 @@
     #content {
         padding-top: 20px;
         padding-left: 20px;
-        background: seagreen;
+        background: khaki;
     }
 
     html {
