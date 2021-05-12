@@ -17,6 +17,20 @@
             </b-navbar>
         </div>
 
+        <div class="my-carousel">
+            <carousel-3d style="margin:0; padding-top: 40px; max-height: 400px; height: 400px;" class="carousel-3d">
+                <slide class="slide" :index="0">
+                    <h3>See our beautiful models</h3>
+                    <img src="https://theblondesalad.com/wp-content/uploads/2020/09/armina900-585x878.jpg" height="280" />
+                    
+                </slide>
+                <slide :index="1">
+                    <h3>You won't be disappointed</h3>
+                    <img src="https://i.imgur.com/Z88kTKE.png" height="280" />
+                </slide>
+            </carousel-3d>
+        </div>
+
         <router-view id="content" />
     </div>
 </template>
@@ -57,6 +71,19 @@
     
 </script>
 <style scoped>
+    .my-carousel {
+        background-color: khaki;
+    }
+
+    h3 {
+        text-align: center;
+    }
+
+    .responsive-image{
+        width: 100%;
+        height: auto;
+    }
+
     a {
         text-decoration: none;
         color: white;
@@ -156,4 +183,9 @@
             transform: translate(0, 8px);
         }
     }
+
+    b-carousel-slide {
+        width: 100%;
+        height: auto;
+    } 
 </style>
