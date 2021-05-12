@@ -17,6 +17,7 @@
         </div>
         <div>
             <input class="submit formEntry" type="button" value="Create Job" name="createbtn" v-on:click="postjob" />
+            <input class="submit formEntry" type="button" value="See all jobs" name="createbtn" v-on:click="seealljobs" />
         </div>
     </form>
 </template>
@@ -52,6 +53,9 @@
 
                 this.$router.push('/app');
 
+            },
+            seealljobs: async function () {
+                this.$router.push('/ListJobs');
             }
         }
     }
