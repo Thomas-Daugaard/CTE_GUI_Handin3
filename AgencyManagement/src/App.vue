@@ -6,18 +6,21 @@
 
                 <b-collapse id="nav-collapse" is-nav>
                     <b-navbar-nav>
-                        <b-nav-item v-if="!authorize"><router-link :to="'/login'">Login</router-link></b-nav-item>
-                        <b-nav-item v-if="authorize" v-on:click="logout">Logout</b-nav-item>
-                        <b-nav-item v-if="authorize"><router-link :to="'/CreateManager'">Manage</router-link></b-nav-item>
-                        <b-nav-item v-if="authorize"><router-link :to="'/Job'">Jobs</router-link></b-nav-item>
-                        <b-nav-item v-if="authorize"><router-link :to="'/model'">Model</router-link></b-nav-item>
-                        <img height="40" class="floatright" src="../Images/logo.png" />
+                        <b-nav-item v-if="!authorize" v-on:click="carousel = false"><router-link :to="'/login'">Login</router-link></b-nav-item>
+                        <b-nav-item v-if="authorize" v-on:click="logout"><router-link :to="'/'">Logout</router-link></b-nav-item>
+                        <b-nav-item v-if="authorize" v-on:click="carousel = false"><router-link :to="'/managers/create'">Managers</router-link></b-nav-item>
+                        <b-nav-item v-if="authorize" v-on:click="carousel = false"><router-link :to="'/jobs/index'">Jobs</router-link></b-nav-item>
+                        <b-nav-item v-if="authorize" v-on:click="carousel = false"><router-link :to="'/models/index'">Models</router-link></b-nav-item>
+                        <router-link :to="'/'">
+                            <img height="40" class="floatright" src="../Images/logo.png" v-on:click="carousel = true">
+                        </router-link>
+                        
                     </b-navbar-nav>
                 </b-collapse>
             </b-navbar>
         </div>
 
-        <div class="my-carousel">
+        <div class="my-carousel" v-if="carousel">
             <carousel-3d style="margin:0; padding-top: 40px; max-height: 400px; height: 400px;" class="carousel-3d">
                 <slide class="slide" :index="0">
                     <h3>See our beautiful models</h3>
@@ -36,31 +39,34 @@
 </template>
 
 <script>
-    import myjobs from './components/Job.vue'
-    import listJobs from './components/listJobs.vue'
-    import createManager from './components/CreateManager.vue'
-    import myLogin from './components/MyLogin.vue'
-    import newModel from './components/NewModel.vue'
-    import listModels from './components/ListModel.vue'
+    import login from './components/Login.vue'
+    import createManager from './components/Managers/CreateManager.vue'
+    import createModel from './components/Models/CreateModel.vue'
+    import listModels from './components/Models/ListModels.vue'
+    import createJob from './components/Jobs/CreateJob.vue'
+    import listJobs from './components/Jobs/ListJobs.vue'
+
     export default {
         name: 'app',
         components: {
+            login,
             createManager,
             myLogin,
             newModel,
             myjobs,
-            listJobs,
-            listModels
+            listJobs
         },
         data() {
             return {
-                authorize: false
+                authorize: false,
+                carousel: false
             }
         },
         methods: {
             logout: function () {
                 localStorage.removeItem("token");
                 this.authorize = false;
+                this.carousel = true;
                 return;
             }
         },

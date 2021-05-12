@@ -1,10 +1,11 @@
 import Vue from "vue";
 import Router from "vue-router";
-import createManager from './components/CreateManager.vue'
-import myjobs from './components/Job.vue'
-import myLogin from './components/MyLogin.vue'
-import newModel from './components/NewModel.vue'
-import listJobs from './components/listJobs.vue'
+import login from './components/Login.vue'
+import createManager from './components/Managers/CreateManager.vue'
+import createModel from './components/Models/CreateModel.vue'
+import listModels from './components/Models/ListModels.vue'
+import createJob from './components/Jobs/CreateJob.vue'
+import listJobs from './components/Jobs/ListJobs.vue'
 
 Vue.use(Router);
 
@@ -15,26 +16,31 @@ export default new Router({
         {
             path: "/login",
             name: "Login",
-            component: myLogin
+            component: login
         },
         {
-            path: "/CreateManager",
+            path: "/managers/create",
             name: "CreateManager",
             component: createManager
         },
         {
-            path: "/model",
-            name: "NewModel",
-            component: newModel
+            path: "/models/create",
+            name: "CreateModel",
+            component: createModel
         },
         {
-            path: "/job",
-            name: "myjobs",
-            component: myjobs
+            path: "/models/index",
+            name: "ListModels",
+            component: listModels
         },
         {
-            path: "/listJobs",
-            name: "listJobs",
+            path: "/jobs/create",
+            name: "CreateJob",
+            component: createJob
+        },
+        {
+            path: "/jobs/index",
+            name: "ListJobs",
             component: listJobs
         }
 
