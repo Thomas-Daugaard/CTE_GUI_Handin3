@@ -41,6 +41,7 @@
     import createManager from './components/CreateManager.vue'
     import myLogin from './components/MyLogin.vue'
     import newModel from './components/NewModel.vue'
+    import listModels from './components/ListModel.vue'
     export default {
         name: 'app',
         components: {
@@ -48,7 +49,8 @@
             myLogin,
             newModel,
             myjobs,
-            listJobs
+            listJobs,
+            listModels
         },
         data() {
             return {
