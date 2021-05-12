@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import createManager from './components/CreateManager.vue'
+import myjobs from './components/Job.vue'
 import myLogin from './components/MyLogin.vue'
 import newModel from './components/NewModel.vue'
 
@@ -24,6 +25,11 @@ export default new Router({
             path: "/model",
             name: "NewModel",
             component: newModel
+        },
+        {
+            path: "/job",
+            name: "myjobs",
+            component: myjobs
         }
 
         ]

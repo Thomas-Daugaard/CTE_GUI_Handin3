@@ -7,10 +7,10 @@
             <input class="name formEntry" type="text" placeholder="Enter lastname" v-model="newmanager.lastName" />
         </div>
         <div>
-            <input class="name formEntry" type="text" placeholder="Enter email" v-model="newmanager.email" />
+            <input class="name formEntry" type="email" placeholder="Enter email" v-model="newmanager.email" />
         </div>
         <div>
-            <input class="name formEntry" type="text" placeholder="Enter password" v-model="newmanager.password" />
+            <input class="name formEntry" type="password" placeholder="Enter password" v-model="newmanager.password" />
         </div>
         <div>
             <input class="submit formEntry" type="button" value="Create Manager" name="createbtn" v-on:click="postmanager" />
@@ -46,7 +46,7 @@
                 }).then(res => res.json()).catch(error => alert("Error" + error));
 
              
-                    //this.$router.push('/model');
+                    this.$router.push('/app');
                
             }
         }
