@@ -34,7 +34,7 @@
 
         <input v-model="form.Password" class="name formEntry" type="text" id="password" placeholder="Enter Password" />
 
-        <input type="button" class="submit formEntry" value="Create Model" id="modelCreationbtn" v-on:click="PostModel" />
+        <input type="button" class="submit formEntry" value="Create Model" id="modelCreationbtn" v-on:click="postModel" />
     </form>
 </template>
 
