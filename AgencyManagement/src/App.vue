@@ -15,7 +15,6 @@
                 </b-collapse>
             </b-navbar>
         </div>
-        <p></p>
 
         <router-view id="content" />
     </div>
@@ -73,11 +72,11 @@
     #content {
         padding-top: 20px;
         padding-left: 20px;
-        background: steelblue;
+        background: darkkhaki;
     }
 
     html {
-        background-color: darkkhaki;
+        background-color: khaki;
     }
 
     input {
