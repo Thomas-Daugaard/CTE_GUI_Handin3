@@ -32,17 +32,17 @@
             }
         },
         methods: {
-            postmanager: async function () {
+            postmanager: function () {
                 let url = "https://localhost:44368/api/Managers";
 
-                await fetch(url, {
+                fetch(url, {
                     method: 'POST',
                     credentials: 'include',
                     headers: new Headers({
-                        'Authorization': 'Bearer' + localStorage.getItem("token"),
+                        'Authorization': 'Bearer' +" " + localStorage.getItem("token"),
                         'Content-Type': 'application/json'
                     }),
-                    body: JSON.stringify(this.data)
+                    body: JSON.stringify(this.newmanager)
                 }).then(res => res.json()).catch(error => alert("Error" + error));
 
              
