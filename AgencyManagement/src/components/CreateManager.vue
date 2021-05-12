@@ -37,26 +37,22 @@
 
                 try {
 
-                    let response = await fetch(url, {
-                        method: "POST",
-                        body: JSON.stringify(this.newmanager),
-                        credentials: "include",
+                    await fetch(url, {
+                        method: 'POST',
+                        credentials: 'include',
                         headers: new Headers({
-                            "Authorization": "Bearer" + localStorage.getItem("token"),
-                            "Content-Type": "application/json"
-                        })
-                    });
+                            'Authorization': 'Bearer' + localStorage.getItem("token"),
+                            'Content-Type': 'application/json'
+                        }),
+                        body: JSON.stringify(this.data)
+                    }).then(responseJson => { this.response = responseJson });
 
-                    if (response.ok) {
-                        //let token = await response.json();
-                        this.$router.push('/CreateManager');
-                    }
-                    else {
-                        alert("Server returned: " + response.statusText);
-                    }
                 }
                 catch (err) {
                     alert("Error: " + err);
+                }
+                finally {
+                    //this.$router.push('/model');
                 }
             }
         }
