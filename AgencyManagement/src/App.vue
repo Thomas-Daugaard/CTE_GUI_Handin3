@@ -37,7 +37,7 @@
 
 <script>
     import myjobs from './components/Job.vue'
-    import listJobs from './components/listJob.vue'
+    import listJobs from './components/listJobs.vue'
     import createManager from './components/CreateManager.vue'
     import myLogin from './components/MyLogin.vue'
     import newModel from './components/NewModel.vue'
