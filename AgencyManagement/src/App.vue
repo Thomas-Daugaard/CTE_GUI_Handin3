@@ -23,6 +23,7 @@
 
 <script>
     import myjobs from './components/Job.vue'
+    import listJobs from './components/listJob.vue'
     import createManager from './components/CreateManager.vue'
     import myLogin from './components/MyLogin.vue'
     import newModel from './components/NewModel.vue'
@@ -32,7 +33,8 @@
             createManager,
             myLogin,
             newModel,
-            myjobs
+            myjobs,
+            listJobs
         },
         data() {
             return {

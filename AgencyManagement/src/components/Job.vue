@@ -55,7 +55,7 @@
 
             },
             seealljobs: async function () {
-                this.$router.push('/ListJobs');
+                this.$router.push('/listJobs');
             }
         }
     }
