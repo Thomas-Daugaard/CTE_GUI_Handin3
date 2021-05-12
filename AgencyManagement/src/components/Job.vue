@@ -50,7 +50,7 @@
                 }).then(res => res.json()).catch(error => alert("Error" + error));
 
 
-                this.$router.push('/login');
+                this.$router.push('/app');
 
             }
         }
