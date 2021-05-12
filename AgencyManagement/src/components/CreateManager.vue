@@ -32,10 +32,10 @@
             }
         },
         methods: {
-            postmanager: function () {
+            postmanager: async function () {
                 let url = "https://localhost:44368/api/Managers";
 
-                fetch(url, {
+                await fetch(url, {
                     method: 'POST',
                     credentials: 'include',
                     headers: new Headers({
