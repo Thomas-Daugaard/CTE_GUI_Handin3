@@ -1,40 +1,40 @@
 <template>
     <form method="post" class="form">
-        <input v-model="form.FirstName" class="name formEntry" id="firstName" placeholder="Enter Firstname" />
+        <input v-model="form.newModel.firstName" class="name formEntry" />
 
-        <input v-model="form.LastName" class="name formEntry" id="lastName" type="text" placeholder="Enter Lastname" />
+        <input v-model="form.newModel.lastName" class="name formEntry" type="text" />
 
-        <input v-model="form.Email" class="name formEntry" type="text" id="email" placeholder="Enter Email" />
+        <input v-model="form.newModel.email" class="name formEntry" type="text"/>
 
-        <input v-model="form.PhoneNo" class="name formEntry" type="text" id="phoneNo" placeholder="Enter Phone number" />
+        <input v-model="form.newModel.phoneNo" class="name formEntry" type="text" />
 
-        <input v-model="form.AddresLine1" class="name formEntry" type="text" id="addresLine1" placeholder="Enter Adress" />
+        <input v-model="form.newModel.addresLine1" class="name formEntry" type="text"/>
 
-        <input v-model="form.AddresLine2" class="name formEntry" type="text" id="addresLine2" placeholder="Enter Adress" />
+        <input v-model="form.newModel.addresLine2" class="name formEntry" type="text" />
 
-        <input v-model="form.Zip" class="name formEntry" type="text" id="zip" placeholder="Enter Zip-code" />
+        <input v-model="form.newModel.zip" class="name formEntry" type="text"  />
 
-        <input v-model="form.City" class="name formEntry" type="text" id="city" placeholder="Enter City" />
+        <input v-model="form.newModel.city" class="name formEntry" type="text"  />
 
-        <input v-model="form.Country" class="name formEntry" type="text" id="country" placeholder="Enter Country" />
+        <input v-model="form.newModel.country" class="name formEntry" type="text"  />
 
-        <input v-model="form.BirthDate" class="name formEntry" type="text" id="birthDate" placeholder="Enter Birth-date" />
+        <input v-model="form.newModel.birthDate" class="name formEntry" type="text" />
 
-        <input v-model="form.Nationality" class="name formEntry" type="text" id="nationality" placeholder="Enter Nationality" />
+        <input v-model="form.newModel.nationality" class="name formEntry" type="text" />
 
-        <input v-model="form.Height" class="name formEntry" type="text" id="height" placeholder="Enter Height" />
+        <input v-model="form.newModel.height" class="name formEntry" type="text"  />
 
-        <input v-model="form.ShoeSize" class="name formEntry" type="text" id="shoeSize" placeholder="Enter Shoe Size" />
+        <input v-model="form.newModel.shoeSize" class="name formEntry" type="text" />
 
-        <input v-model="form.HairColor" class="name formEntry" type="text" id="hairColor" placeholder="Enter Hair color" />
+        <input v-model="form.newModel.hairColor" class="name formEntry" type="text"  />
 
-        <input v-model="form.EyeColor" class="name formEntry" type="text" id="eyeColor" placeholder="Enter Eye color" />
+        <input v-model="form.newModel.eyeColor" class="name formEntry" type="text" />
 
-        <input v-model="form.Comments" class="name formEntry" type="text" id="comments" placeholder="Enter Comments" />
+        <input v-model="form.newModel.comments" class="name formEntry" />
 
-        <input v-model="form.Password" class="name formEntry" type="text" id="password" placeholder="Enter Password" />
+        <input v-model="form.newModel.password" class="name formEntry"/>
 
-        <input type="button" class="submit formEntry" value="Create Model" id="modelCreationbtn" v-on:click="postModel" />
+        <input type="button" class="submit formEntry" value="Create Model" v-on:click="postModel" />
     </form>
 </template>
 
@@ -45,52 +45,39 @@
             return {
                 form: {
                     newModel: {
-                        firstName: '',
-                        lastName: '',
-                        email: '',
-                        phoneNo: '',
-                        adressline1: '',
-                        adressline2: '',
-                        zip: '',
-                        city: '',
-                        country: '',
-                        birthDate: null,
-                        nationality: '',
-                        height: 0,
-                        shoeSize: 0,
-                        hairColor: '',
-                        eyeColor: '',
-                        comments: '',
-                        password: '',
+                        firstName: 'Enter Firstname',
+                        lastName: 'Enter Lastname',
+                        email: 'Enter Email',
+                        phoneNo: 'Enter Phone number',
+                        addresLine1: 'Enter Adress',
+                        addresLine2: 'Enter Adress',
+                        zip: 'Enter Zip-code',
+                        city: 'Enter City',
+                        country: 'Enter Country',
+                        birthDate: 'Enter Birth-date',
+                        nationality: 'Enter Nationality',
+                        height: 'Enter Height',
+                        shoeSize: 'Enter Shoe Size',
+                        hairColor: 'Enter Hair color',
+                        eyeColor: 'Enter Eye color',
+                        comments: 'Enter Comments',
+                        password: 'Enter Password',
                     }
                 }
             }
         },
         methods: {
             postModel: async function () {
-                let url = "https://localhost:44368/api/account/Models";
-                try {
-                    let response = await fetch(url, {
-                        method: "POST",
-                        body: JSON.stringify(this.newModel),
-                        headers: new Headers({
-                            "Content-Type": "application/json"
-                        })
-                    });
-
-                    if (response.ok) {
-                        let token = await response.json();
-                        localStorage.setItem("token", token.jwt);
-                        // Change view to some other component // …
-                    }
-                    else {
-                        alert("Server returned: " + response.statusText);
-                    }
-                }
-                catch (err) {
-                    alert("Error: " + err);
-                }
-                return;
+                let url = "https://localhost:44368/api/Models";
+                fetch(url, {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: new Headers({
+                        'Authorization': 'Bearer' + " " + localStorage.getItem("token"),
+                        'Content-Type': 'application/json'
+                    }),
+                    body: JSON.stringify(this.form.newModel)
+                }).then(res => res.json()).catch(error => alert("Error" + error));
             }
         }
     }
