@@ -1,16 +1,36 @@
 <template>
-    <form class="form" v-on:load="getallusers">
-        <div>
-            <ul>
-                <li v-for="item in jobs">
-                    {{item.JobdId}} {{item.Customer}} {{item.StartDate}} {{item.Days}} {{item.Location}}
-                </li>
-            </ul>
-        </div>
-        <div>
+    <div v-on:load="getallusers">
+        <table v-for="job in jobs" v-bind:key="job">
+            <tr>
+                <td>
+                    <p> {{ job.jobId }} </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p> {{ job.customer }} </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>{{ job.startDate }}</p>
+                </td>
+            </tr>
+            <tr>
+                 <td>
+                     <p>{{ job.days }}</p>
+                 </td>
+            </tr>
+            <tr>
+                  <td>
+                      <p>{{ job.location }}</p>
+                  </td>
+            </tr>
+        </table>
+        <form class="form">
             <input class="submit formEntry" type="button" value="Add model to job" name="addbtn" v-on:click="addmodel" />
-        </div>
-    </form>
+        </form>
+    </div>
 </template>
 
 <script>
@@ -22,8 +42,8 @@
             }
         },
         methods: {
-            getallusers: async function () {
-                let url = "https://localhost:44368/api/Jobs";
+            getjobs: async function () {
+                let url = "https://localhost:44368/api/jobs";
 
                 await fetch(url, {
                     method: 'GET',

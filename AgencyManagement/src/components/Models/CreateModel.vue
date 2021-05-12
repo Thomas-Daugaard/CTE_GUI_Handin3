@@ -40,7 +40,7 @@
 
 <script>
     export default {
-        name: 'new-model',
+        name: 'create-model',
         data() {
             return {
                 form: {

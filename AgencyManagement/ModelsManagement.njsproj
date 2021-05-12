@@ -36,19 +36,19 @@
     <Content Include="public\favicon.ico" />
     <Content Include="public\index.html" />
     <Content Include="src\App.vue" />
-    <Content Include="src\components\Job.vue">
+    <Content Include="src\components\Jobs\CreateJob.vue">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="src\components\listJobs.vue">
+    <Content Include="src\components\Jobs\ListJobs.vue">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="src\components\ListModel.vue">
+    <Content Include="src\components\Models\ListModels.vue">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="src\components\MyLogin.vue">
+    <Content Include="src\components\Login.vue">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="src\components\CreateManager.vue">
+    <Content Include="src\components\Managers\CreateManager.vue">
       <SubType>Code</SubType>
     </Content>
     <Content Include="package.json" />
@@ -61,10 +61,13 @@
     <Folder Include="src\" />
     <Folder Include="src\assets\" />
     <Folder Include="src\components\" />
+    <Folder Include="src\components\Models\" />
+    <Folder Include="src\components\Jobs\" />
+    <Folder Include="src\components\Managers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="babel.config.js" />
-    <Content Include="src\components\NewModel.vue">
+    <Content Include="src\components\Models\CreateModel.vue">
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\router.js">

@@ -9,8 +9,8 @@
 </template>
 
 <script>
-    const vm = new Vue({
-        name: 'list-model',
+    export default {
+        name: 'list-models',
         data() {
             models: []
         },
@@ -24,14 +24,14 @@
                         'Authorization': 'Bearer ' + localStorage.getItem("token"),
                         'Content-Type': 'application/json'
                     }
+
                 }).then(responseJson => {
-                    this.response = responseJson);
-            })
-        .catch(error => alert('Something bad happened: ' + error));
+                    this.response = responseJson
+
+                }).catch(error => alert('Something bad happened: ' + error));
             }
         }
     }
-    )
 
 </script>
 
