@@ -41,13 +41,14 @@
                         method: "POST",
                         body: JSON.stringify(this.newmanager),
                         headers: new Headers({
+                            "Authorization": "Bearer",
                             "Content-Type": "application/json"
                         })
                     });
 
                     if (response.ok) {
                         let token = await response.json();
-                        localStorage.setItem("token", token.jwt);
+                        localStorage.getItem("token", token.jwt);
                         this.$router.push('/CreateManager');
                     }
                     else {
