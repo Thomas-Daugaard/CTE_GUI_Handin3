@@ -28,7 +28,7 @@
                     headers: new Headers({
                         'Authorization': 'Bearer' + " " + localStorage.getItem("token"),
                         'Content-Type': 'application/json'
-                    }
+                    })
 
                 }).then(res => res.json())
                     .then(res => this.jobs = res)
