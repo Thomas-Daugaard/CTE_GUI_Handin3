@@ -9,6 +9,7 @@
                         <b-nav-item v-if="!authorize"><router-link :to="'/login'">Login</router-link></b-nav-item>
                         <b-nav-item v-if="authorize" v-on:click="logout">Logout</b-nav-item>
                         <b-nav-item v-if="authorize"><router-link :to="'/CreateManager'">Manage</router-link></b-nav-item>
+                        <b-nav-item v-if="authorize"><router-link :to="'/Job'">Jobs</router-link></b-nav-item>
                         <b-nav-item v-if="authorize"><router-link :to="'/model'">Model</router-link></b-nav-item>
                         <img height="40" class="floatright" src="../Images/logo.png" />
                     </b-navbar-nav>
@@ -21,6 +22,7 @@
 </template>
 
 <script>
+    import myjobs from './components/Job.vue'
     import createManager from './components/CreateManager.vue'
     import myLogin from './components/MyLogin.vue'
     import newModel from './components/NewModel.vue'
@@ -29,7 +31,8 @@
         components: {
             createManager,
             myLogin,
-            newModel
+            newModel,
+            myjobs
         },
         data() {
             return {
