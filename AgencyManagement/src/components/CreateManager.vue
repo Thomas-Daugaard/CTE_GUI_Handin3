@@ -32,32 +32,22 @@
             }
         },
         methods: {
-            postmanager: async function () {
+            postmanager: function () {
                 let url = "https://localhost:44368/api/Managers";
 
-                try {
+                fetch(url, {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: new Headers({
+                        'Authorization': 'Bearer' +" " + localStorage.getItem("token"),
+                        'Content-Type': 'application/json'
+                    }),
+                    body: JSON.stringify(this.newmanager)
+                }).then(res => res.json()).catch(error => alert("Error" + error));
 
-                    let response = await fetch(url, {
-                        method: "POST",
-                        body: JSON.stringify(this.newmanager),
-                        credentials: "include",
-                        headers: new Headers({
-                            "Authorization": "Bearer" + localStorage.getItem("token"),
-                            "Content-Type": "application/json"
-                        })
-                    });
-
-                    if (response.ok) {
-                        //let token = await response.json();
-                        this.$router.push('/CreateManager');
-                    }
-                    else {
-                        alert("Server returned: " + response.statusText);
-                    }
-                }
-                catch (err) {
-                    alert("Error: " + err);
-                }
+             
+                    //this.$router.push('/model');
+               
             }
         }
     }
