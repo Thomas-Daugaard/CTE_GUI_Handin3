@@ -77,7 +77,7 @@
     }
 
     html {
-        background-color: lightpink;
+        background-color: darkkhaki;
     }
 
     input {
