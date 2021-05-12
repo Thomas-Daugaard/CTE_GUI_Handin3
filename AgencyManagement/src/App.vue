@@ -72,7 +72,7 @@
     #content {
         padding-top: 20px;
         padding-left: 20px;
-        background: darkkhaki;
+        background: seagreen;
     }
 
     html {
