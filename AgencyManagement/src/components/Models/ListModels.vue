@@ -5,6 +5,7 @@
                 {{model.firstName}} {{model.lastName}}
             </li>
         </ul>
+        <br />
     </form>
 </template>
 
@@ -29,7 +30,7 @@
                     }
 
                 }).then(res => res.json())
-                    .then(res => this.jobs = res.data)
+                    .then(res => this.jobs = res)
                     .catch(error => alert("Error" + error));
             }
         },
