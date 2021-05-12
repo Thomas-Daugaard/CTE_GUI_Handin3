@@ -60,11 +60,11 @@ export default {
     #content{
         padding-top: 20px;
         padding-left: 20px;
-        background: Khaki;
+        background: steelblue;
     }
 
     html {
-        background-color: khaki;
+        background-color: lightpink;
     }
 
     input {
