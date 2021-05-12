@@ -4,7 +4,7 @@ import createManager from './components/CreateManager.vue'
 import myjobs from './components/Job.vue'
 import myLogin from './components/MyLogin.vue'
 import newModel from './components/NewModel.vue'
-import alljobs from './components/listJobs.vue'
+import listJobs from './components/listJobs.vue'
 
 Vue.use(Router);
 
@@ -33,7 +33,7 @@ export default new Router({
             component: myjobs
         },
         {
-            path: "/allJobs",
+            path: "/listJobs",
             name: "listJobs",
             component: alljobs
         }

@@ -1,7 +1,7 @@
 <template>
     <h1>All Jobs</h1>
 
-    <form class="form">
+    <!--<form class="form">
         <div>
             <ul>
                 <li v-for="">
@@ -12,7 +12,7 @@
         <div>
             <input class="submit formEntry" type="button" value="Add model to job" name="addbtn" v-on:click="addmodel" />
         </div>
-    </form>
+    </form>-->
 </template>
 
 <script>
