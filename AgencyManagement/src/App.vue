@@ -6,16 +6,15 @@
 
                 <b-collapse id="nav-collapse" is-nav>
                     <b-navbar-nav>
-                        <b-nav-item><router-link :to="'/login'">Login</router-link></b-nav-item>
+                        <b-nav-item v-if="!authorize"><router-link :to="'/login'">Login</router-link></b-nav-item>
+                        <b-nav-item v-if="authorize" v-on:click="logout">Logout</b-nav-item>
                         <b-nav-item v-if="authorize"><router-link :to="'/CreateManager'">Manage</router-link></b-nav-item>
                         <b-nav-item v-if="authorize"><router-link :to="'/model'">Model</router-link></b-nav-item>
                         <img height="40" class="floatright" src="../Images/logo.png" />
-                        <b-nav-item v-on:click="logout">Logout</b-nav-item>
                     </b-navbar-nav>
                 </b-collapse>
             </b-navbar>
         </div>
-        <p></p>
 
         <router-view id="content" />
     </div>
@@ -73,11 +72,11 @@
     #content {
         padding-top: 20px;
         padding-left: 20px;
-        background: steelblue;
+        background: darkkhaki;
     }
 
     html {
-        background-color: lightpink;
+        background-color: khaki;
     }
 
     input {
