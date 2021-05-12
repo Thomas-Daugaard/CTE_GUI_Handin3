@@ -51,9 +51,9 @@
         components: {
             login,
             createManager,
-            createModel,
-            listModels,
-            createJob,
+            myLogin,
+            newModel,
+            myjobs,
             listJobs
         },
         data() {

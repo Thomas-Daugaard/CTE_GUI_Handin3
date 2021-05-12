@@ -1,7 +1,8 @@
 <template>
-    <form class="form">
+    <form class="form"  v-on:load="getModels">
         <ul>
             <li v-for="(model, index) in models" :key="index">
+            <li v-for="model in models" v-bind:key="model.id" v-bind:firstName="model.firstName" v-bind:lastName="model.lastName">
                 {{model.firstName}} {{model.lastName}}
             </li>
         </ul>
@@ -24,8 +25,8 @@
                 await fetch(url, {
                     method: 'GET',
                     credentials: 'include',
-                    headers: {
-                        'Authorization': 'Bearer ' + localStorage.getItem("token"),
+                    headers: new Headers({
+                        'Authorization': 'Bearer' + " " + localStorage.getItem("token"),
                         'Content-Type': 'application/json'
                     }
 
