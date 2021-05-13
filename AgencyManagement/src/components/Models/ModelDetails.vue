@@ -71,7 +71,7 @@
                     .then(res => this.models = res)
                     .catch(error => alert("Error" + error));
             },
-            setModelId: function (id) {
+            setModelId(id) {
                 this.test = id;
             },
         },

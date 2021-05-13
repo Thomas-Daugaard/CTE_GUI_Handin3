@@ -38,8 +38,7 @@
         },
         data() {
             return {
-                models: [],
-                id: 0
+                models: []
             }
         },
         methods: {
