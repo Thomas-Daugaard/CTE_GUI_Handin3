@@ -14,18 +14,26 @@
                         <router-link :to="'/'">
                             <img height="40" class="floatright" src="../Images/logo.png" v-on:click="carousel = true">
                         </router-link>
-                       
+
                     </b-navbar-nav>
                 </b-collapse>
             </b-navbar>
         </div>
+
+        <carousel>
+            <slide data-index="0"
+                   data-name="MySlideName"
+                   @slideclick="handleSlideClick">
+                Slide 1 Content
+            </slide>
+        </carousel>
 
         <div class="my-carousel" v-if="carousel">
             <carousel-3d style="margin:0; padding-top: 40px; max-height: 400px; height: 400px;" class="carousel-3d">
                 <slide class="slide" :index="0">
                     <h3>See our beautiful models</h3>
                     <img src="https://theblondesalad.com/wp-content/uploads/2020/09/armina900-585x878.jpg" height="280" />
-                    
+
                 </slide>
                 <slide :index="1">
                     <h3>You won't be disappointed</h3>
@@ -45,6 +53,7 @@
     import listModels from './components/Models/ListModels.vue'
     import createJob from './components/Jobs/CreateJob.vue'
     import listJobs from './components/Jobs/ListJobs.vue'
+    import { Carousel, Slide } from 'vue-carousel';
 
     export default {
         name: 'app',
@@ -54,7 +63,9 @@
             createModel,
             listModels,
             createJob,
-            listJobs
+            listJobs,
+            Carousel,
+            Slide
         },
         data() {
             return {
@@ -68,7 +79,9 @@
                 this.authorize = false;
                 this.carousel = true;
                 return;
-            }
+            },
+            handleSlideClick(dataset) => {
+        console.log(dataset.index, dataset.name)
         },
         mounted() {
             this.$root.$on('authorize', () => 
