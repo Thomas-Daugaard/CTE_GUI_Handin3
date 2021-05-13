@@ -1,6 +1,9 @@
 <template>
-    <div>
-        <h1>All Models</h1>
+    <div id="model">
+        <router-link :to="'/models/details'">
+            <button v-on:click="sendId()"></button>
+        </router-link>
+            <h1>All Models</h1>
         <ul class="responsive-table">
             <li class="table-header">
                 <div class="col col-1">Name</div>
@@ -16,25 +19,27 @@
                 <div class="col col-3" data-label="Height">{{model.height}}</div>
                 <div class="col col-4" data-label="Hair Color">{{model.hairColor}}</div>
                 <div class="col col-5" data-label="Eye Color">{{model.eyeColor}}</div>
-                <router-link :to="'/models/modelDetails'"><input type="button" value="Details" id='list-models' modelEmail='3'/></router-link>
+                <router-link :to="'/models/details'" v-on:click="sendId()"><input type="button" value="Details" /></router-link>
             </li>
         </ul>
-        <router-link :to="'/models/create'"><input type="button" class="submit formEntry" value="New Model" /></router-link>
         <br />
     </div>
 </template>
 
 <script>
     import createModel from './CreateModel.vue'
+    import modelDetails from './ModelDetails.vue'
+
     export default {
         name: 'list-models',
         components: {
-            createModel
+            createModel,
+            modelDetails
         },
         data() {
             return {
                 models: [],
-                modelEmail: ''
+                id: 0
             }
         },
         methods: {
@@ -52,6 +57,9 @@
                 }).then(res => res.json())
                     .then(res => this.models = res)
                     .catch(error => alert("Error" + error));
+            },
+            sendId() {
+                this.$root.$emit('modelId', "fuck det her lorte liv");
             }
         },
         mounted() {

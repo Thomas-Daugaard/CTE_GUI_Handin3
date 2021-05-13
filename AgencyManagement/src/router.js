@@ -51,7 +51,7 @@ export default new Router({
             component: listJobs
         },
         {
-            path: "/models/modelDetails",
+            path: "/models/details",
             name: "ModelDetails",
             component: modelDetails
         }

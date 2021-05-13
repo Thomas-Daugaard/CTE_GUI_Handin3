@@ -1,7 +1,6 @@
 <template>
     <div>
-        <list-models>{{modelEmail}}</list-models>
-        <h1>All Models</h1>
+        <!--<h1>All Models</h1>
         <ul class="responsive-table">
             <li class="table-header">
                 <div class="col col-1">Name</div>
@@ -37,7 +36,10 @@
             </li>
         </ul>
         <router-link :to="'/models/create'"><input type="button" class="submit formEntry" value="New Model" /></router-link>
-        <br />
+        <br />-->
+
+        <h1>{{test}}</h1>
+
     </div>
 </template>
 
@@ -46,12 +48,34 @@
         name: 'model-details',
         data() {
             return {
-                
+                models: [],
+                test: 'hej'
             }
         },
-        props: ['modelEmail'],
-    }
-    
+        created() {
+            this.$root.$on('modelId', this.setModelId)
+        },
+        methods: {
+            getModels: async function (id) {
+                let url = "https://localhost:44368/api/models/" + id;
+
+                await fetch(url, {
+                    method: 'GET',
+                    credentials: 'include',
+                    headers: new Headers({
+                        'Authorization': 'Bearer' + " " + localStorage.getItem("token"),
+                        'Content-Type': 'application/json'
+                    })
+
+                }).then(res => res.json())
+                    .then(res => this.models = res)
+                    .catch(error => alert("Error" + error));
+            },
+            setModelId: function (id) {
+                this.test = id;
+            },
+        },
+        }
 </script>
 
 <style scoped>

@@ -12,7 +12,7 @@
             <slide data-index="0"
                    data-name="slide1"
                    @slideclick="handleSlideClick">
-                <img class="modelImg center" src="https://i.dlpng.com/static/png/5376395-random-model-png-14-by-dreamervisen-on-deviantart-model-png-750_915_preview.png" />
+                <img class="modelImg center" src="https://freepngimg.com/thumb/girl/4-2-girl-png-pic.png" />
                 <p class="modelText">Book one of our many beautiful models</p>
             </slide>
             <slide data-index="1"
