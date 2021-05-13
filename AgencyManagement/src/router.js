@@ -6,6 +6,7 @@ import createModel from './components/Models/CreateModel.vue'
 import listModels from './components/Models/ListModels.vue'
 import createJob from './components/Jobs/CreateJob.vue'
 import listJobs from './components/Jobs/ListJobs.vue'
+import modelDetails from './components/Models/ModelDetails.vue'
 
 Vue.use(Router);
 
@@ -42,6 +43,11 @@ export default new Router({
             path: "/jobs/index",
             name: "ListJobs",
             component: listJobs
+        },
+        {
+            path: "/models/modelDetails",
+            name: "ModelDetails",
+            component: modelDetails
         }
 
         ]

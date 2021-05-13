@@ -45,6 +45,7 @@
     import listModels from './components/Models/ListModels.vue'
     import createJob from './components/Jobs/CreateJob.vue'
     import listJobs from './components/Jobs/ListJobs.vue'
+    import modelDetails from './components/Models/ModelDetails.vue'
 
     export default {
         name: 'app',
@@ -54,7 +55,8 @@
             createModel,
             listModels,
             createJob,
-            listJobs
+            listJobs,
+            modelDetails
         },
         data() {
             return {
