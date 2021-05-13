@@ -6,12 +6,14 @@
                 <div class="col col-2">Start Date</div>
                 <div class="col col-3">Days</div>
                 <div class="col col-4">Location</div>
+                <div class="col col-5"></div>
             </li>
             <li class="table-row" v-for="(job, index) of jobs" :key="index">
                 <div class="col col-1" data-label="Customer">{{job.customer}}</div>
                 <div class="col col-2" data-label="Start Date">{{job.startDate}}</div>
                 <div class="col col-3" data-label="Days">{{job.days}}</div>
                 <div class="col col-4" data-label="Location">{{job.location}}</div>
+                <div class="col col-5" data-label="Job id"><a>Add model</a></div>
             </li>
         </ul>
 
@@ -117,6 +119,9 @@
     }
 
     .responsive-table .col-4 {
+        flex-basis: 30%;
+    }
+    .responsive-table .col-5 {
         flex-basis: 30%;
     }
 
