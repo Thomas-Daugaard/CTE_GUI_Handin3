@@ -53,6 +53,7 @@
     import listModels from './components/Models/ListModels.vue'
     import createJob from './components/Jobs/CreateJob.vue'
     import listJobs from './components/Jobs/ListJobs.vue'
+    import modelDetails from './components/Models/ModelDetails.vue'
     import { Carousel, Slide } from 'vue-carousel';
 
     export default {
@@ -63,6 +64,8 @@
             createModel,
             listModels,
             createJob,
+            listJobs,
+            modelDetails
             listJobs,
             Carousel,
             Slide
