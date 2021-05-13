@@ -51,7 +51,7 @@
                 }).then(res => res.json()).catch(error => alert("Error" + error));
 
 
-                this.$router.push('/jobs/index);
+                this.$router.push('/jobs/index');
 
             },
             seealljobs: async function () {
