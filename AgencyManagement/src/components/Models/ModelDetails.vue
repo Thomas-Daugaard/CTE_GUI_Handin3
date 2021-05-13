@@ -1,22 +1,39 @@
 <template>
     <div>
+        <list-models>{{modelEmail}}</list-models>
         <h1>All Models</h1>
         <ul class="responsive-table">
             <li class="table-header">
                 <div class="col col-1">Name</div>
+                <div class="col col-1">Email</div>
+                <div class="col col-1">Phone Number</div>
+                <div class="col col-1">Address</div>
+                <div class="col col-1">Zip code</div>
+                <div class="col col-1">City</div>
+                <div class="col col-1">Country</div>
+                <div class="col col-1">Nationality</div>
+                <div class="col col-1">Height</div>
                 <div class="col col-2">Birth date</div>
-                <div class="col col-3">Height</div>
+                <div class="col col-3">Shoe size</div>
                 <div class="col col-4">Hair Color</div>
                 <div class="col col-5">Eye Color</div>
-                <div class="col col-6">Detalis</div>
+                <div class="col col-5">Comments</div>
             </li>
             <li class="table-row" v-for="(model, index) in models" :key="index">
                 <div class="col col-1" data-label="Name">{{model.firstName}} {{model.lastName}}</div>
+                <div class="col col-2" data-label="Email">{{model.email}}</div>
+                <div class="col col-2" data-label="Phone Number">{{model.phoneNo}}</div>
+                <div class="col col-2" data-label="Address">{{model.addresLine1}} {{model.addresLine2}}</div>
+                <div class="col col-2" data-label="Zip code">{{model.zip}}</div>
+                <div class="col col-2" data-label="City">{{model.city}}</div>
+                <div class="col col-2" data-label="Country">{{model.country}}</div>
+                <div class="col col-2" data-label="Nationality">{{model.nationality}}</div>
+                <div class="col col-2" data-label="Height">{{model.height}}</div>
                 <div class="col col-2" data-label="Birth date">{{model.birthDate}}</div>
-                <div class="col col-3" data-label="Height">{{model.height}}</div>
+                <div class="col col-3" data-label=">Shoe size">{{model.shoeSize}}</div>
                 <div class="col col-4" data-label="Hair Color">{{model.hairColor}}</div>
                 <div class="col col-5" data-label="Eye Color">{{model.eyeColor}}</div>
-                <router-link :to="'/models/modelDetails'"><input type="button" value="Details" id='list-models' modelEmail='3'/></router-link>
+                <div class="col col-2" data-label="Comments">{{model.comments}}</div>
             </li>
         </ul>
         <router-link :to="'/models/create'"><input type="button" class="submit formEntry" value="New Model" /></router-link>
@@ -25,40 +42,16 @@
 </template>
 
 <script>
-    import createModel from './CreateModel.vue'
     export default {
-        name: 'list-models',
-        components: {
-            createModel
-        },
+        name: 'model-details',
         data() {
             return {
-                models: [],
-                modelEmail: ''
+                
             }
         },
-        methods: {
-            getModels: async function () {
-                let url = "https://localhost:44368/api/models";
-
-                await fetch(url, {
-                    method: 'GET',
-                    credentials: 'include',
-                    headers: new Headers({
-                        'Authorization': 'Bearer' + " " + localStorage.getItem("token"),
-                        'Content-Type': 'application/json'
-                    })
-
-                }).then(res => res.json())
-                    .then(res => this.models = res)
-                    .catch(error => alert("Error" + error));
-            }
-        },
-        mounted() {
-            this.getModels()
-        }
+        props: ['modelEmail'],
     }
-
+    
 </script>
 
 <style scoped>
@@ -123,6 +116,7 @@
     .responsive-table .col-5 {
         flex-basis: 12%;
     }
+
     .responsive-table .col-6 {
         flex-basis: 10%;
     }
