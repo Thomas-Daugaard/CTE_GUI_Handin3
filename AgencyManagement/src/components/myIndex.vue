@@ -24,7 +24,7 @@
             <slide data-index="2"
                    data-name="slide1"
                    @slideclick="handleSlideClick">
-                <img class="modelImg center" src="https://i.dlpng.com/static/png/6989660_preview.png" />
+                <img class="modelImg center" src="https://freepngimg.com/thumb/girl/11-2-girl-transparent.png" />
                 <p class="modelText">Check out our extensive model catalog</p>
             </slide>
         </carousel>
@@ -58,14 +58,20 @@
 
     .modelImg {
         max-width: 400px;
-        height: 530px;
+        height: 510px;
         object-fit: cover;
     }
     .modelText {
         position: relative;
         text-align: center;
-        margin: 0;
-        padding: 0;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 0%);
+        font-size: 20px;
+        letter-spacing: 0.1em;
+        -webkit-text-fill-color: transparent;
+        -webkit-text-stroke-width: .5px;
+        -webkit-text-stroke-color: white;
+        text-shadow: 2px 2px #ff1f8f, 2.5px 2.5px #000000;
     }
-
 </style>
