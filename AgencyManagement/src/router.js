@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
+import myIndex from './components/myIndex.vue'
 import login from './components/Login.vue'
 import createManager from './components/Managers/CreateManager.vue'
 import createModel from './components/Models/CreateModel.vue'
@@ -14,6 +15,11 @@ export default new Router({
     mode: "history",
     base: process.env.BASE_URL,
     routes: [
+        {
+            path: "/index",
+            name: "Index",
+            component: myIndex
+        },
         {
             path: "/login",
             name: "Login",

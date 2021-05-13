@@ -3,7 +3,6 @@
         <input type="email" placeholder="Enter email" class="name formEntry" v-model="form.email" v-on:click="form.email = ''"/>
         <input type="password" placeholder="Enter password" class="name formEntry" v-model="form.password" v-on:click="form.password = ''"/>
         <input type="button" class="submit formEntry" value="Submit" v-on:click="login" />
-
     </form>
 </template>
 
@@ -35,6 +34,7 @@
                         localStorage.setItem("token", token.jwt);
 
                         this.$root.$emit('authorize')
+                        this.$router.push('Index')
 
                     } else {
                         alert("Server returned: " + response.statusText);
