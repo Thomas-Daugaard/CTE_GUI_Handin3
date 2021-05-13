@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container form">
         <ul class="responsive-table">
             <li class="table-header">
                 <div class="col col-1">Customer</div>
@@ -17,6 +17,7 @@
 
         <form class="form">
             <input class="submit formEntry" type="button" value="Add model to job" name="addbtn" v-on:click="addmodel" />
+            <input class="submit formEntry" type="button" value="Create Job" name="createbtn" v-on:click="postjob" />
         </form>
         </div>
 </template>
@@ -49,6 +50,9 @@
             },
             addmodel: async function () {
 
+            },
+            postjob: async function () {
+                this.$router.push('/jobs/create');
             }
         },
         mounted() {
