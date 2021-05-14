@@ -10,20 +10,17 @@
                   centerMode="true"
                   >
             <slide data-index="0"
-                   data-name="slide1"
-                   @slideclick="handleSlideClick">
+                   data-name="slide1">
                 <img class="modelImg center" src="https://freepngimg.com/thumb/girl/4-2-girl-png-pic.png" />
                 <p class="modelText">Book one of our many beautiful models</p>
             </slide>
             <slide data-index="1"
-                   data-name="slide2"
-                   @slideclick="handleSlideClick">
+                   data-name="slide2">
                 <img class="modelImg center" src="https://freepngimg.com/thumb/girl/23114-7-woman-model-file.png" />
                 <p class="modelText">You won't be disappointed</p>
             </slide>
             <slide data-index="2"
-                   data-name="slide1"
-                   @slideclick="handleSlideClick">
+                   data-name="slide1">
                 <img class="modelImg center" src="https://freepngimg.com/thumb/girl/11-2-girl-transparent.png" />
                 <p class="modelText">Check out our extensive model catalog</p>
             </slide>

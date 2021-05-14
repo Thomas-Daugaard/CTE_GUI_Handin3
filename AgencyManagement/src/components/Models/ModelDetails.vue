@@ -1,63 +1,58 @@
 <template>
     <div>
-        <!--<h1>All Models</h1>
-        <ul class="responsive-table">
-            <li class="table-header">
-                <div class="col col-1">Name</div>
-                <div class="col col-1">Email</div>
-                <div class="col col-1">Phone Number</div>
-                <div class="col col-1">Address</div>
-                <div class="col col-1">Zip code</div>
-                <div class="col col-1">City</div>
-                <div class="col col-1">Country</div>
-                <div class="col col-1">Nationality</div>
-                <div class="col col-1">Height</div>
-                <div class="col col-2">Birth date</div>
-                <div class="col col-3">Shoe size</div>
-                <div class="col col-4">Hair Color</div>
-                <div class="col col-5">Eye Color</div>
-                <div class="col col-5">Comments</div>
-            </li>
-            <li class="table-row" v-for="(model, index) in models" :key="index">
-                <div class="col col-1" data-label="Name">{{model.firstName}} {{model.lastName}}</div>
-                <div class="col col-2" data-label="Email">{{model.email}}</div>
-                <div class="col col-2" data-label="Phone Number">{{model.phoneNo}}</div>
-                <div class="col col-2" data-label="Address">{{model.addresLine1}} {{model.addresLine2}}</div>
-                <div class="col col-2" data-label="Zip code">{{model.zip}}</div>
-                <div class="col col-2" data-label="City">{{model.city}}</div>
-                <div class="col col-2" data-label="Country">{{model.country}}</div>
-                <div class="col col-2" data-label="Nationality">{{model.nationality}}</div>
-                <div class="col col-2" data-label="Height">{{model.height}}</div>
-                <div class="col col-2" data-label="Birth date">{{model.birthDate}}</div>
-                <div class="col col-3" data-label=">Shoe size">{{model.shoeSize}}</div>
-                <div class="col col-4" data-label="Hair Color">{{model.hairColor}}</div>
-                <div class="col col-5" data-label="Eye Color">{{model.eyeColor}}</div>
-                <div class="col col-2" data-label="Comments">{{model.comments}}</div>
-            </li>
-        </ul>
-        <router-link :to="'/models/create'"><input type="button" class="submit formEntry" value="New Model" /></router-link>
-        <br />-->
-
-        <h1>{{test}}</h1>
-
+        <h1>All Models</h1>
+        
+    <ul class="responsive-table">
+        <li class="table-header">
+            <div class="col col-1">Name</div>
+            <div class="col col-2">Email</div>
+            <div class="col col-1">Phone Number</div>
+            <div class="col col-1">Address</div>
+            <div class="col col-1">Zip code</div>
+            <div class="col col-1">City</div>
+            <div class="col col-1">Country</div>
+            <div class="col col-1">Nationality</div>
+            <div class="col col-1">Height</div>
+            <div class="col col-2">Birth date</div>
+            <div class="col col-3">Shoe size</div>
+            <div class="col col-4">Hair Color</div>
+            <div class="col col-5">Eye Color</div>
+            <div class="col col-5">Comments</div>
+        </li>
+        <li class="table-row">
+            <div class="col col-1" data-label="Name">{{model.firstName}} {{model.lastName}}</div>
+            <div class="col col-2" data-label="Email">{{model.email}}</div>
+            <div class="col col-2" data-label="Phone Number">{{model.phoneNo}}</div>
+            <div class="col col-2" data-label="Address">{{model.addresLine1}} {{model.addresLine2}}</div>
+            <div class="col col-2" data-label="Zip code">{{model.zip}}</div>
+            <div class="col col-2" data-label="City">{{model.city}}</div>
+            <div class="col col-2" data-label="Country">{{model.country}}</div>
+            <div class="col col-2" data-label="Nationality">{{model.nationality}}</div>
+            <div class="col col-2" data-label="Height">{{model.height}}</div>
+            <div class="col col-2" data-label="Birth date">{{model.birthDate}}</div>
+            <div class="col col-3" data-label=">Shoe size">{{model.shoeSize}}</div>
+            <div class="col col-4" data-label="Hair Color">{{model.hairColor}}</div>
+            <div class="col col-5" data-label="Eye Color">{{model.eyeColor}}</div>
+            <div class="col col-2" data-label="Comments">{{model.comments}}</div>
+        </li>
+    </ul>
+    <router-link :to="'/models/create'"><input type="button" class="submit formEntry" value="New Model" /></router-link>
+    <br />
     </div>
 </template>
 
 <script>
     export default {
         name: 'model-details',
+        props: ['modelid'],
         data() {
             return {
-                models: [],
-                test: 'hej'
+                model: null
             }
         },
-        created() {
-            this.$root.$on('modelId', this.setModelId)
-        },
         methods: {
-            getModels: async function (id) {
-                let url = "https://localhost:44368/api/models/" + id;
+            getModels: async function () {
+                let url = "https://localhost:44368/api/models/" + this.modelid;
 
                 await fetch(url, {
                     method: 'GET',
@@ -68,14 +63,15 @@
                     })
 
                 }).then(res => res.json())
-                    .then(res => this.models = res)
+                    .then(res => this.model = res)
                     .catch(error => alert("Error" + error));
-            },
-            setModelId(id) {
-                this.test = id;
-            },
+                return;
+            }
         },
+        mounted() {
+            this.getModels()
         }
+     }
 </script>
 
 <style scoped>

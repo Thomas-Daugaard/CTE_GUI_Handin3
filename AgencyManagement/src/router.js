@@ -53,7 +53,8 @@ export default new Router({
         {
             path: "/models/details",
             name: "ModelDetails",
-            component: modelDetails
+            component: modelDetails,
+            props: true
         }
 
         ]

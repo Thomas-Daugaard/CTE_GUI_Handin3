@@ -1,8 +1,5 @@
 <template>
     <div id="model">
-        <router-link :to="'/models/details'">
-            <button v-on:click="sendId()"></button>
-        </router-link>
             <h1>All Models</h1>
         <ul class="responsive-table">
             <li class="table-header">
@@ -11,7 +8,7 @@
                 <div class="col col-3">Height</div>
                 <div class="col col-4">Hair Color</div>
                 <div class="col col-5">Eye Color</div>
-                <div class="col col-6">Detalis</div>
+                <div class="col col-6">Details</div>
             </li>
             <li class="table-row" v-for="(model, index) in models" :key="index">
                 <div class="col col-1" data-label="Name">{{model.firstName}} {{model.lastName}}</div>
@@ -19,7 +16,7 @@
                 <div class="col col-3" data-label="Height">{{model.height}}</div>
                 <div class="col col-4" data-label="Hair Color">{{model.hairColor}}</div>
                 <div class="col col-5" data-label="Eye Color">{{model.eyeColor}}</div>
-                <router-link :to="'/models/details'" v-on:click="sendId()"><input type="button" value="Details" /></router-link>
+                <router-link :to="{name: 'ModelDetails', params: {modelid}}"><input type="button" value="Details" v-on:click="modelid = model.efModelId"/></router-link>
             </li>
         </ul>
         <br />
@@ -38,7 +35,8 @@
         },
         data() {
             return {
-                models: []
+                models: [],
+                modelid: 0
             }
         },
         methods: {
@@ -56,9 +54,6 @@
                 }).then(res => res.json())
                     .then(res => this.models = res)
                     .catch(error => alert("Error" + error));
-            },
-            sendId() {
-                this.$root.$emit('modelId', "fuck det her lorte liv");
             }
         },
         mounted() {
