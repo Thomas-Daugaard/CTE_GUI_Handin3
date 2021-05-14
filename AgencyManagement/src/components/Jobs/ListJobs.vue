@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div>
-                    <router-link :to="{name: 'AddExpense', params: {jobid}}"><input type="button" class="dropbtn" v-on:click="jobid=job.efJobId" value="Add Expense"/></router-link>
+                    <router-link :to="{name: 'AddExpense', params: {jobid, modelid}}"><input type="button" class="dropbtn" v-on:click="jobid=job.efJobId, modelid=model.efModelId" value="Add Expense"/></router-link>
                 </div>
             </li>
         </ul>
@@ -40,7 +40,8 @@
             return {
                 jobs: [],
                 models: [],
-                jobid: 0
+                jobid: 0,
+                modelid: 0
             }
         },
         components: {

@@ -17,7 +17,6 @@
                 <div class="col col-4" data-label="Hair Color">{{model.hairColor}}</div>
                 <div class="col col-5" data-label="Eye Color">{{model.eyeColor}}</div>
                 <router-link :to="{name: 'ModelDetails', params: {modelid}}"><input type="button" value="Details" v-on:click="modelid = model.efModelId" /></router-link>
-
             </li>
         </ul>
         <router-link :to="'/models/create'"><input class="submit formEntry" type="button" value="Create Model"/></router-link>

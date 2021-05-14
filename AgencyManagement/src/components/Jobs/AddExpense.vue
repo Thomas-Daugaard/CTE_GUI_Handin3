@@ -6,7 +6,8 @@
             <input v-model="newExpense.date" class="name formEntry" placeholder="Enter Date" />
             <input v-model="newExpense.text" class="name formEntry" placeholder="Enter Text" />
             <input v-model="newExpense.amount" class="name formEntry" placeholder="Enter Amount" />
-            <router-link :to="'/jobs/index'"><input type="button" class="submit formEntry" value="Back to jobs"/></router-link>
+            <input type="button" class="submit formEntry" value="Add Expense" v-on:click="postExpense" />
+            <router-link :to="'/jobs/index'"><input type="button" class="submit formEntry" value="Back to jobs" /></router-link>
         </form>
     </div>
 </template>

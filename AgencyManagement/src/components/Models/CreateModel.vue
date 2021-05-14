@@ -80,6 +80,8 @@
                     }),
                     body: JSON.stringify(this.form.newModel)
                 }).then(res => res.json()).catch(error => alert("Error" + error));
+
+                this.$router.push('/models/index');
             }
         }
     }
