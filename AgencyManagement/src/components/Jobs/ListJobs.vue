@@ -7,6 +7,7 @@
                 <div class="col col-3">Days</div>
                 <div class="col col-4">Location</div>
                 <div class="col-5"></div>
+                <div class="col-5"></div>
             </li>
             <li class="table-row" v-for="(job, index) of jobs" :key="index">
                 <div class="col col-1" data-label="Customer">{{job.customer}}</div>
@@ -20,6 +21,9 @@
                         <a v-if="checkIfAdded(job, model)" v-for="(model, index) in models" :key="index" v-on:click="addModel(job, model)">{{ model.firstName }} {{ model.lastName }}</a>
                     </div>
                 </div>
+                <div>
+                    <router-link :to="{name: 'AddExpense', params: {jobid}}"><input type="button" class="dropbtn" v-on:click="jobid=job.efJobId" value="Add Expense"/></router-link>
+                </div>
             </li>
         </ul>
 
@@ -29,13 +33,18 @@
 </template>
 
 <script>
+    import addExpense from './AddExpense.vue'
     export default {
         name: 'list-jobs',
         data() {
             return {
                 jobs: [],
-                models: []
+                models: [],
+                jobid: 0
             }
+        },
+        components: {
+            addExpense
         },
         methods: {
             getjobs: async function () {
@@ -166,11 +175,11 @@
     }
 
     .responsive-table .col-3 {
-        flex-basis: 10%;
+        flex-basis: 5%;
     }
 
     .responsive-table .col-4 {
-        flex-basis: 30%;
+        flex-basis: 25%;
     }
     .responsive-table .col-5 {
         flex-basis: 15%;
