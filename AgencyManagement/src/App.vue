@@ -14,7 +14,6 @@
                         <router-link :to="'/index'">
                             <img height="40" class="floatright" src="../Images/logo.png" v-on:click="this.$router.push('Index')">
                         </router-link>
-
                     </b-navbar-nav>
                 </b-collapse>
             </b-navbar>
