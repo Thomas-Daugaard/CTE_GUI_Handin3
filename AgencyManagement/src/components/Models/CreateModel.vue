@@ -1,10 +1,11 @@
 <template>
-    <form method="post" class="form">
-        <input v-model="newModel.firstName" class="name formEntry" placeholder="Enter Firstname" />
+    <form class="form">
+      
+        <input v-model="newModel.firstName" class="name formEntry" type="text" placeholder="Enter Firstname" />
 
         <input v-model="newModel.lastName" class="name formEntry" type="text" placeholder="Enter Lastname" />
 
-        <input v-model="newModel.email" class="name formEntry" type="text" placeholder="Enter Email" />
+        <input v-model="newModel.email" class="name formEntry" type="email" placeholder="Enter Email" />
 
         <input v-model="newModel.phoneNo" class="name formEntry" type="text" placeholder="Enter Phone number" />
 
@@ -18,19 +19,19 @@
 
         <input v-model="newModel.country" class="name formEntry" type="text" placeholder="Enter Country" />
 
-        <input v-model="newModel.birthDate" class="name formEntry" type="text" placeholder="Enter Birth-date" />
+        <input v-model="newModel.birthDate" class="name formEntry" type="datetime" placeholder="Enter Birth-date" />
 
         <input v-model="newModel.nationality" class="name formEntry" type="text" placeholder="Enter Nationality" />
 
-        <input v-model="newModel.height" class="name formEntry" type="text" placeholder="Enter Height" />
+        <input v-model="newModel.height" class="name formEntry" type="number" placeholder="Enter Height" />
 
-        <input v-model="newModel.shoeSize" class="name formEntry" type="text" placeholder="Enter Shoe Size" />
+        <input v-model="newModel.shoeSize" class="name formEntry" type="number" placeholder="Enter Shoe Size" />
 
         <input v-model="newModel.hairColor" class="name formEntry" type="text" placeholder="Enter Hair color" />
 
         <input v-model="newModel.eyeColor" class="name formEntry" type="text" placeholder="Enter Eye color" />
 
-        <input v-model="newModel.comments" class="name formEntry" placeholder="Enter Comments" />
+        <input v-model="newModel.comments" class="name formEntry" type="text" placeholder="Enter Comments" />
 
         <input v-model="newModel.password" class="name formEntry" type="password" placeholder="Enter Password" />
 
