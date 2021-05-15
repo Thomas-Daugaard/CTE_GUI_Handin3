@@ -21,15 +21,17 @@
                         <a v-if="checkIfAdded(job, model)" v-for="(model, index) in models" :key="index" v-on:click="addModel(job, model)">{{ model.firstName }} {{ model.lastName }}</a>
                     </div>
                 </div>
+
                 <div>
-                    <router-link :to="{name: 'AddExpense', params: {jobid, modelid}}"><input type="button" class="dropbtn" v-on:click="jobid=job.efJobId, modelid=model.efModelId" value="Add Expense"/></router-link>
+                    <router-link :to="{name: 'AddExpense', params: {jobid, modelid}}"><input type="button" class="dropbtn" v-on:click="jobid=job.efJobId, modelid=model.efModelId" value="Add Expense" /></router-link>
                 </div>
             </li>
         </ul>
 
-            <input class="submit formEntry" type="button" value="Add new job" v-on:click="addjob" />
+        <input class="submit formEntry" type="button" value="Add new job" v-on:click="addjob" />
 
-        </div>
+
+    </div>
 </template>
 
 <script>
@@ -41,7 +43,9 @@
                 jobs: [],
                 models: [],
                 jobid: 0,
-                modelid: 0
+                modelid: 0,
+                showModal: false,
+                modalTitle: "Succes!"
             }
         },
         components: {
@@ -111,7 +115,10 @@
                 })
 
                 this.getjobs();
-                this.checkIfAdded(job, model);
+                if (this.checkIfAdded(job, model)) {
+                    this.$alert("Model added", "Success")
+                }
+                
             },
             addjob: async function () {
                 this.$router.push('/jobs/create');
