@@ -36,6 +36,10 @@
     <Content Include="public\favicon.ico" />
     <Content Include="public\index.html" />
     <Content Include="src\App.vue" />
+    <Content Include="src\components\Jobs\AddExpense.vue">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\components\myIndex.vue" />
     <Content Include="src\components\Jobs\CreateJob.vue">
       <SubType>Code</SubType>
     </Content>

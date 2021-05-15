@@ -1,48 +1,25 @@
 <template>
     <div id="app">
         <div id="nav">
-            <b-navbar toggleable="lg" type="dark" variant="dark">
+            <b-navbar toggleable="lg" type="dark" variant="dark" fixed="top" sticky="true">
                 <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
                 <b-collapse id="nav-collapse" is-nav>
                     <b-navbar-nav>
-                        <b-nav-item v-if="!authorize" v-on:click="carousel = false"><router-link :to="'/login'">Login</router-link></b-nav-item>
+                        <b-nav-item v-if="!authorize"><router-link :to="'/login'">Login</router-link></b-nav-item>
                         <b-nav-item v-if="authorize" v-on:click="logout"><router-link :to="'/'">Logout</router-link></b-nav-item>
-                        <b-nav-item v-if="authorize" v-on:click="carousel = false"><router-link :to="'/managers/create'">Managers</router-link></b-nav-item>
-                        <b-nav-item v-if="authorize" v-on:click="carousel = false"><router-link :to="'/jobs/index'">Jobs</router-link></b-nav-item>
-                        <b-nav-item v-if="authorize" v-on:click="carousel = false"><router-link :to="'/models/index'">Models</router-link></b-nav-item>
-                        <router-link :to="'/'">
-                            <img height="40" class="floatright" src="../Images/logo.png" v-on:click="carousel = true">
+                        <b-nav-item v-if="authorize"><router-link :to="'/managers/create'">Managers</router-link></b-nav-item>
+                        <b-nav-item v-if="authorize"><router-link :to="'/jobs/index'">Jobs</router-link></b-nav-item>
+                        <b-nav-item v-if="authorize"><router-link :to="'/models/index'">Models</router-link></b-nav-item>
+                        <router-link :to="'/index'">
+                            <img height="40" class="floatright" src="../Images/logo.png" v-on:click="this.$router.push('Index')">
                         </router-link>
-
                     </b-navbar-nav>
                 </b-collapse>
             </b-navbar>
         </div>
 
-        <carousel>
-            <slide data-index="0"
-                   data-name="MySlideName"
-                   @slideclick="handleSlideClick">
-                Slide 1 Content
-            </slide>
-        </carousel>
-
-        <div class="my-carousel" v-if="carousel">
-            <carousel-3d style="margin:0; padding-top: 40px; max-height: 400px; height: 400px;" class="carousel-3d">
-                <slide class="slide" :index="0">
-                    <h3>See our beautiful models</h3>
-                    <img src="https://theblondesalad.com/wp-content/uploads/2020/09/armina900-585x878.jpg" height="280" />
-
-                </slide>
-                <slide :index="1">
-                    <h3>You won't be disappointed</h3>
-                    <img src="https://i.imgur.com/Z88kTKE.png" height="280" />
-                </slide>
-            </carousel-3d>
-        </div>
-
-        <router-view id="content" />
+        <router-view id="content" class="centerb" />
     </div>
 </template>
 
@@ -54,7 +31,6 @@
     import createJob from './components/Jobs/CreateJob.vue'
     import listJobs from './components/Jobs/ListJobs.vue'
     import modelDetails from './components/Models/ModelDetails.vue'
-    import { Carousel, Slide } from 'vue-carousel';
 
     export default {
         name: 'app',
@@ -65,27 +41,20 @@
             listModels,
             createJob,
             listJobs,
-            modelDetails,
-            listJobs,
-            Carousel,
-            Slide
+            modelDetails
         },
         data() {
             return {
                 authorize: false,
-                carousel: false
             }
         },
         methods: {
             logout: function () {
                 localStorage.removeItem("token");
                 this.authorize = false;
-                this.carousel = true;
                 return;
-            },
-            handleSlideClick(dataset => {
-        console.log(dataset.index, dataset.name)
-        }),
+                }
+            },            
         mounted() {
             this.$root.$on('authorize', () => 
                 this.authorize = true
@@ -95,10 +64,6 @@
     
 </script>
 <style scoped>
-    .my-carousel {
-        background-color: khaki;
-    }
-
     h3 {
         text-align: center;
     }
@@ -116,7 +81,7 @@
 
     .floatright {
         float: right;
-        padding-left: 50px;
+        margin-left: 60em;
     }
 
     b-navbar {
@@ -133,6 +98,13 @@
 
     html {
         background-color: khaki;
+    }
+
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
     }
 
     input {

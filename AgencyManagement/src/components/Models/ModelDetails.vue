@@ -1,57 +1,101 @@
 <template>
     <div>
-        <list-models>{{modelEmail}}</list-models>
-        <h1>All Models</h1>
-        <ul class="responsive-table">
-            <li class="table-header">
-                <div class="col col-1">Name</div>
-                <div class="col col-1">Email</div>
-                <div class="col col-1">Phone Number</div>
-                <div class="col col-1">Address</div>
-                <div class="col col-1">Zip code</div>
-                <div class="col col-1">City</div>
-                <div class="col col-1">Country</div>
-                <div class="col col-1">Nationality</div>
-                <div class="col col-1">Height</div>
-                <div class="col col-2">Birth date</div>
-                <div class="col col-3">Shoe size</div>
-                <div class="col col-4">Hair Color</div>
-                <div class="col col-5">Eye Color</div>
-                <div class="col col-5">Comments</div>
-            </li>
-            <li class="table-row" v-for="(model, index) in models" :key="index">
-                <div class="col col-1" data-label="Name">{{model.firstName}} {{model.lastName}}</div>
-                <div class="col col-2" data-label="Email">{{model.email}}</div>
-                <div class="col col-2" data-label="Phone Number">{{model.phoneNo}}</div>
-                <div class="col col-2" data-label="Address">{{model.addresLine1}} {{model.addresLine2}}</div>
-                <div class="col col-2" data-label="Zip code">{{model.zip}}</div>
-                <div class="col col-2" data-label="City">{{model.city}}</div>
-                <div class="col col-2" data-label="Country">{{model.country}}</div>
-                <div class="col col-2" data-label="Nationality">{{model.nationality}}</div>
-                <div class="col col-2" data-label="Height">{{model.height}}</div>
-                <div class="col col-2" data-label="Birth date">{{model.birthDate}}</div>
-                <div class="col col-3" data-label=">Shoe size">{{model.shoeSize}}</div>
-                <div class="col col-4" data-label="Hair Color">{{model.hairColor}}</div>
-                <div class="col col-5" data-label="Eye Color">{{model.eyeColor}}</div>
-                <div class="col col-2" data-label="Comments">{{model.comments}}</div>
-            </li>
-        </ul>
-        <router-link :to="'/models/create'"><input type="button" class="submit formEntry" value="New Model" /></router-link>
-        <br />
+        <h1>Details about: {{model.firstName}} {{model.lastName}}</h1>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th data-label="Name">{{model.firstName}} {{model.lastName}}</th>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <th data-label="Email">{{model.email}}</th>
+            </tr>
+            <tr>
+                <th>Phone Number</th>
+                <th data-label="Phone Number">{{model.phoneNo}}</th>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <th data-label="Address">{{model.addresLine1}} {{model.addresLine2}}</th>
+            </tr>
+            <tr>
+                <th>Zip code</th>
+                <th data-label="Zip code">{{model.zip}}</th>
+            </tr>
+            <tr>
+                <th>City</th>
+                <th data-label="City">{{model.city}}</th>
+            </tr>
+            <tr>
+                <th>Country</th>
+                <th data-label="Country">{{model.country}}</th>
+            </tr>
+            <tr>
+                <th>Nationality</th>
+                <th data-label="Nationality">{{model.nationality}}</th>
+            </tr>
+            <tr>
+                <th>Height</th>
+                <th data-label="Height">{{model.height}}</th>
+            </tr>
+            <tr>
+                <th>Birth date</th>
+                <th data-label="Birth date">{{model.birthDate}}</th>
+            </tr>
+            <tr>
+                <th>Shoe size</th>
+                <th data-label=">Shoe size">{{model.shoeSize}}</th>
+            </tr>
+            <tr>
+                <th>Hair Color</th>
+                <th data-label="Hair Color">{{model.hairColor}}</th>
+            </tr>
+            <tr>
+                <th>Eye Color</th>
+                <th data-label="Eye Color">{{model.eyeColor}}</th>
+            </tr>
+            <tr>
+                <th>Comments</th>
+                <th data-label="Comments">{{model.comments}}</th>
+            </tr>
+        </table>
+   
+    <router-link :to="'/models/index'"><input type="button" class="submit formEntry" value="Back to list" /></router-link>
+    <br />
     </div>
 </template>
 
 <script>
     export default {
         name: 'model-details',
+        props: ['modelid'],
         data() {
             return {
-                
+                model: null
             }
         },
-        props: ['modelEmail'],
-    }
-    
+        methods: {
+            getModels: async function () {
+                let url = "https://localhost:44368/api/models/" + this.modelid;
+
+                await fetch(url, {
+                    method: 'GET',
+                    credentials: 'include',
+                    headers: new Headers({
+                        'Authorization': 'Bearer' + " " + localStorage.getItem("token"),
+                        'Content-Type': 'application/json'
+                    })
+
+                }).then(res => res.json())
+                    .then(res => this.model = res)
+                    .catch(error => alert("Error" + error));
+                return;
+            }
+        },
+        mounted() {
+            this.getModels()
+        }
+     }
 </script>
 
 <style scoped>
@@ -76,49 +120,23 @@
             font-size: 0.5em;
         }
 
-    .responsive-table li {
-        border-radius: 3px;
-        padding: 25px 30px;
-        display: flex;
-        justify-content: space-between;
-        max-width: 65%;
-        margin: 0 15% 0 15%;
-    }
-
-    .responsive-table .table-header {
+    table {
+        width: 30%;
+        margin-left: 35%;
+        margin-right: 35%;
         background-color: #95a5a6;
-        font-size: 14px;
-        text-transform: uppercase;
-        letter-spacing: 0.03em;
+        border-top: 1px solid black
     }
 
-    .responsive-table .table-row {
-        background-color: #fff;
-        box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+    table tr {
+        border-bottom: 1px solid black;
     }
 
-    .responsive-table .col-1 {
-        flex-basis: 25%;
-    }
-
-    .responsive-table .col-2 {
-        flex-basis: 30%;
-    }
-
-    .responsive-table .col-3 {
-        flex-basis: 11%;
-    }
-
-    .responsive-table .col-4 {
-        flex-basis: 12%;
-    }
-
-    .responsive-table .col-5 {
-        flex-basis: 12%;
-    }
-
-    .responsive-table .col-6 {
-        flex-basis: 10%;
+    th{
+        height: 50px;
+        vertical-align: text-top;
+        padding-left: 10px;
+        padding-right: 10px;
     }
 
     @media all and (max-width: 767px) {

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="model">
         <h1>All Models</h1>
         <ul class="responsive-table">
             <li class="table-header">
@@ -8,7 +8,7 @@
                 <div class="col col-3">Height</div>
                 <div class="col col-4">Hair Color</div>
                 <div class="col col-5">Eye Color</div>
-                <div class="col col-6">Detalis</div>
+                <div class="col col-6">Details</div>
             </li>
             <li class="table-row" v-for="(model, index) in models" :key="index">
                 <div class="col col-1" data-label="Name">{{model.firstName}} {{model.lastName}}</div>
@@ -16,25 +16,29 @@
                 <div class="col col-3" data-label="Height">{{model.height}}</div>
                 <div class="col col-4" data-label="Hair Color">{{model.hairColor}}</div>
                 <div class="col col-5" data-label="Eye Color">{{model.eyeColor}}</div>
-                <router-link :to="'/models/modelDetails'"><input type="button" value="Details" id='list-models' modelEmail='3'/></router-link>
+                <router-link :to="{name: 'ModelDetails', params: {modelid}}"><input type="button" value="Details" v-on:click="modelid = model.efModelId" /></router-link>
             </li>
         </ul>
-        <router-link :to="'/models/create'"><input type="button" class="submit formEntry" value="New Model" /></router-link>
+        <router-link :to="'/models/create'"><input class="submit formEntry" type="button" value="Create Model"/></router-link>
+
         <br />
     </div>
 </template>
 
 <script>
     import createModel from './CreateModel.vue'
+    import modelDetails from './ModelDetails.vue'
+
     export default {
         name: 'list-models',
         components: {
-            createModel
+            createModel,
+            modelDetails
         },
         data() {
             return {
                 models: [],
-                modelEmail: ''
+                modelid: 0
             }
         },
         methods: {
