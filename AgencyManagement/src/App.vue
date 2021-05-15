@@ -65,7 +65,7 @@
             listModels,
             createJob,
             listJobs,
-            modelDetails
+            modelDetails,
             listJobs,
             Carousel,
             Slide
@@ -83,9 +83,9 @@
                 this.carousel = true;
                 return;
             },
-            handleSlideClick(dataset) => {
+            handleSlideClick(dataset => {
         console.log(dataset.index, dataset.name)
-        },
+        }),
         mounted() {
             this.$root.$on('authorize', () => 
                 this.authorize = true
