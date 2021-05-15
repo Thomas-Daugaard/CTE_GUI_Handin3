@@ -1,6 +1,5 @@
 <template>
     <div>
-        <h1>THIS IS A TEST</h1>
         <form method="post" class="form">
             <h1>Add Expense</h1>
             <input v-model="newExpense.date" class="name formEntry" placeholder="Enter Date" />
