@@ -60,7 +60,8 @@ export default new Router({
         {
             path: "/jobs/addexpense",
             name: "AddExpense",
-            component: addExpense
+            component: addExpense,
+            props: true
         }
         ]
 })
