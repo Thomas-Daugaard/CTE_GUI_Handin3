@@ -7,6 +7,7 @@
                 <div class="col col-3">Days</div>
                 <div class="col col-4">Location</div>
                 <div class="col-5"></div>
+                <div class="col-5"></div>
             </li>
             <li class="table-row" v-for="(job, index) of jobs" :key="index">
                 <div class="col col-1" data-label="Customer">{{job.customer}}</div>
@@ -20,25 +21,35 @@
                         <a v-if="checkIfAdded(model)" v-for="(model, index) in models" :key="index" v-on:click="addModel(job, model)">{{ model.firstName }} {{ model.lastName }}</a>
                     </div>
                 </div>
+
+                <div>
+                    <router-link :to="{name: 'AddExpense', params: {chosenjobid}}"><input type="button" class="dropbtn" v-on:click="chosenjobid=job.efJobId" value="Add Expense" /></router-link>
+                </div>
             </li>
         </ul>
 
-            <input class="submit formEntry" type="button" value="Add new job" v-on:click="addjob" />
+        <input class="submit formEntry" type="button" value="Add new job" v-on:click="addjob" />
 
-        </div>
+
+    </div>
 </template>
 
 <script>
+    import addExpense from './AddExpense.vue'
     export default {
         name: 'list-jobs',
         data() {
             return {
                 jobs: [],
                 models: [],
-                job: null,
-                isManager: false,
-                added: true
+                chosenjobid: 0,
+                modelid: 0,
+                showModal: false,
+                modalTitle: "Succes!"
             }
+        },
+        components: {
+            addExpense
         },
         methods: {
             getjobs: async function () {
@@ -104,21 +115,10 @@
                 })
 
                 this.getjobs();
-            },
-            async getJob(jobId) {
-                let url = "https://localhost:44368/api/jobs/" + jobId;
-
-                await fetch(url, {
-                    method: 'GET',
-                    credentials: 'include',
-                    headers: {
-                        'Authorization': 'Bearer' + " " + localStorage.getItem("token"),
-                        'Content-Type': 'application/json'
-                    }
-
-                }).then(res => res.json())
-                    .then(res => this.job = res)
-                    .catch(error => alert("Error" + error));
+                if (this.checkIfAdded(job, model)) {
+                    this.$alert("Model added", "Success")
+                }
+                
             },
             addjob: async function () {
                 this.$router.push('/jobs/create');
@@ -192,11 +192,11 @@
     }
 
     .responsive-table .col-3 {
-        flex-basis: 10%;
+        flex-basis: 5%;
     }
 
     .responsive-table .col-4 {
-        flex-basis: 30%;
+        flex-basis: 25%;
     }
     .responsive-table .col-5 {
         flex-basis: 15%;

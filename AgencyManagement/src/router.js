@@ -8,6 +8,7 @@ import listModels from './components/Models/ListModels.vue'
 import createJob from './components/Jobs/CreateJob.vue'
 import listJobs from './components/Jobs/ListJobs.vue'
 import modelDetails from './components/Models/ModelDetails.vue'
+import addExpense from './components/Jobs/AddExpense.vue'
 
 Vue.use(Router);
 
@@ -55,7 +56,12 @@ export default new Router({
             name: "ModelDetails",
             component: modelDetails,
             props: true
+        },
+        {
+            path: "/jobs/addexpense",
+            name: "AddExpense",
+            component: addExpense,
+            props: true
         }
-
         ]
 })
