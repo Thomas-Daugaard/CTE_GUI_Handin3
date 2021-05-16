@@ -32,9 +32,10 @@
                     if (response.ok) {
                         let token = await response.json();
                         localStorage.setItem("token", token.jwt);
-
-                        this.$root.$emit('authorize')
-                        this.$router.push('Index')
+                        localStorage.removeItem("email");
+                        localStorage.setItem("email", this.form.email);
+                        this.$root.$emit('authorize');
+                        this.$router.push('Index');
 
                     } else {
                         alert("Server returned: " + response.statusText);

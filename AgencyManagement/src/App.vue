@@ -10,7 +10,7 @@
                         <b-nav-item v-if="authorize" v-on:click="logout"><router-link :to="'/'">Logout</router-link></b-nav-item>
                         <b-nav-item v-if="authorize"><router-link :to="'/managers/create'">Managers</router-link></b-nav-item>
                         <b-nav-item v-if="authorize"><router-link :to="'/jobs/index'">Jobs</router-link></b-nav-item>
-                        <b-nav-item v-if="authorize"><router-link :to="'/models/index'">Models</router-link></b-nav-item>
+                        <b-nav-item v-if="authorize && isManager"><router-link :to="'/models/index'">Models</router-link></b-nav-item>
                         <router-link :to="'/index'">
                             <img height="40" class="floatright" src="../Images/logo.png" v-on:click="this.$router.push('Index')">
                         </router-link>
@@ -46,6 +46,7 @@
         data() {
             return {
                 authorize: false,
+                isManager: false
             }
         },
         methods: {
@@ -53,12 +54,24 @@
                 localStorage.removeItem("token");
                 this.authorize = false;
                 return;
+            },
+            checkUser: function () {
+                if (localStorage.getItem("email") == "boss@m.dk") {
+                    this.isManager = true;
                 }
+                else {
+                    this.isManager = false;
+                }
+            },
+            receiveEvent: function () {
+                this.$root.$on('authorize', () => {
+                    this.authorize = true
+                this.checkUser()
+                })    
+            }
             },            
         mounted() {
-            this.$root.$on('authorize', () => 
-                this.authorize = true
-            )
+            this.receiveEvent()
         }
     }
     
@@ -74,9 +87,9 @@
     }
 
     a {
-        text-decoration: none;
+        text-decoration: none;   
         color: white;
-        padding-left: 10px;
+        padding-left: 10px;  
     }
 
     .floatright {

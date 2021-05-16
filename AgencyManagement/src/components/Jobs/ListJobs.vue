@@ -14,10 +14,10 @@
                 <div class="col col-3" data-label="Days">{{job.days}}</div>
                 <div class="col col-4" data-label="Location">{{job.location}}</div>
 
-                <div class="dropdown col-5">
-                    <button class="dropbtn">Add model</button>
+                <div v-if="isManager" class="dropdown col-5">
+                    <button class="dropbtn" v-on:mouseover="getJob(job.efJobId)">Add model</button>
                     <div class="dropdown-content">
-                        <a v-if="checkIfAdded(job, model)" v-for="(model, index) in models" :key="index" v-on:click="addModel(job, model)">{{ model.firstName }} {{ model.lastName }}</a>
+                        <a v-if="checkIfAdded(model)" v-for="(model, index) in models" :key="index" v-on:click="addModel(job, model)">{{ model.firstName }} {{ model.lastName }}</a>
                     </div>
                 </div>
             </li>
@@ -34,7 +34,10 @@
         data() {
             return {
                 jobs: [],
-                models: []
+                models: [],
+                job: null,
+                isManager: false,
+                added: true
             }
         },
         methods: {
@@ -70,15 +73,15 @@
                     .then(res => this.models = res)
                     .catch(error => alert("Error" + error));
 
-
             },
-            checkIfAdded: function (job, modelToCompare) {
-                if (job.jobModels == null) {
-                    return true;
+            checkIfAdded(modelToCompare) {
+                if (this.job.models == null) {
+                    return false;
                 }
-                for (let model of job.jobModels) {
-                    if (model == modelToCompare)
+                for (let model of this.job.models) {
+                    if (model == modelToCompare) {
                         return false;
+                    }
                 }
                 return true;
             },
@@ -101,15 +104,38 @@
                 })
 
                 this.getjobs();
-                this.checkIfAdded(job, model);
+            },
+            async getJob(jobId) {
+                let url = "https://localhost:44368/api/jobs/" + jobId;
+
+                await fetch(url, {
+                    method: 'GET',
+                    credentials: 'include',
+                    headers: {
+                        'Authorization': 'Bearer' + " " + localStorage.getItem("token"),
+                        'Content-Type': 'application/json'
+                    }
+
+                }).then(res => res.json())
+                    .then(res => this.job = res)
+                    .catch(error => alert("Error" + error));
             },
             addjob: async function () {
                 this.$router.push('/jobs/create');
+            },
+            checkUser: function () {
+                if (localStorage.getItem("email") == "boss@m.dk")
+                    this.isManager = true;
+                else
+                    this.isManager = false;
             }
         },
         mounted() {
+            this.checkUser()
             this.getjobs()
-            this.getmodels()
+            if (this.isManager) {
+                this.getmodels()
+            }
         }
     }
 </script>
