@@ -7,8 +7,7 @@
                   autoplayHoverPause="true"
                   autoplayTimeout="4000"
                   speed="1000"
-                  centerMode="true"
-                  >
+                  centerMode="true">
             <slide data-index="0"
                    data-name="slide1">
                 <img class="modelImg center" src="https://freepngimg.com/thumb/girl/4-2-girl-png-pic.png" />
@@ -22,6 +21,11 @@
             <slide data-index="2"
                    data-name="slide1">
                 <img class="modelImg center" src="https://freepngimg.com/thumb/girl/11-2-girl-transparent.png" />
+                <p class="modelText">Check out our extensive model catalog</p>
+            </slide>
+            <slide data-index="3"
+                   data-name="slide1">
+                <img class="modelImg center" src="http://www.pngall.com/wp-content/uploads/5/Cool-Model-Man-PNG-File.png" />
                 <p class="modelText">Check out our extensive model catalog</p>
             </slide>
         </carousel>

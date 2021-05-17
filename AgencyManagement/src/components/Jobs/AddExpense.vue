@@ -3,8 +3,8 @@
         <form class="form">
             <div>
                 <h1>Add Expenses</h1>
-                <div class="dropdown submit formEntry" style="padding-left: 50px">
-                    <button class="dropbtn">Add model</button>
+                <div class="dropdown submit formEntry" style="padding-left: 0">
+                    <button class="dropbtn">Add model to expense</button>
                     <div class="dropdown-content">
                         <a v-for="(model, index) in models" :key="index" v-on:click="newExpense.modelid=model.efModelId; $alert('Model added');">{{ model.firstName }} {{ model.lastName }}</a>
                     </div>
