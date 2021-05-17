@@ -8,6 +8,7 @@
                 <div class="col col-4">Location</div>
                 <div class="col-5"></div>
                 <div class="col-5"></div>
+                <div class="col-5"></div>
             </li>
             <li class="table-row" v-for="(job, index) of jobs" :key="index">
                 <div class="col col-1" data-label="Customer">{{job.customer}}</div>
@@ -18,18 +19,22 @@
                 <div v-if="isManager" class="dropdown col-5">
                     <button class="dropbtn" v-on:mouseover="getJob(job.efJobId)">Add model</button>
                     <div class="dropdown-content">
-                        <a v-for="(model, index) in models" :key="index" v-on:click="addModel(job, model); $alert('Model added');">{{ model.firstName }} {{ model.lastName }}</a>
+                        <a v-for="(model, index) in models" :key="index" v-if="checkIfAdded(model)"  v-on:click="addModel(job, model)">{{ model.firstName }} {{ model.lastName }}</a>
                     </div>
                 </div>
-
-                <div>
+                <div v-if="isManager" class="dropdown col-5">
+                    <button class="dropbtn" v-on:mouseover="getJob(job.efJobId)">Del model</button>
+                    <div class="dropdown-content">
+                        <a v-for="(model, index) in modelsWithJob" :key="index" v-on:click="deleteModel(job, model); $alert('Model deleted');">{{ model.firstName }} {{ model.lastName }}</a>
+                    </div>
+                </div>
+                <div class="dropdown col-5">
                     <router-link :to="{name: 'AddExpense', params: {chosenjobid}}"><input type="button" class="dropbtn" v-on:click="chosenjobid=job.efJobId" value="Add Expense" /></router-link>
                 </div>
             </li>
         </ul>
 
         <input class="submit formEntry" type="button" value="Add new job" v-on:click="addjob" />
-
 
     </div>
 </template>
@@ -41,6 +46,7 @@
         data() {
             return {
                 jobs: [],
+                modelsWithJob: [],
                 models: [],
                 chosenjobid: 0,
                 modelid: 0,
@@ -67,7 +73,7 @@
                     .then(res => this.jobs = res)
                     .catch(error => alert("Error" + error));
             },
-            getmodels: async function () {
+            getModels: async function () {
                 let url = "https://localhost:44368/api/models";
 
                 await fetch(url, {
@@ -82,17 +88,6 @@
                     .then(res => this.models = res)
                     .catch(error => alert("Error" + error));
 
-            },
-            checkIfAdded(modelToCompare) {
-                if (this.jobs.models == null) {
-                    return false;
-                }
-                for (let model of this.jobs.models) {
-                    if (model == modelToCompare) {
-                        return false;
-                    }
-                }
-                return true;
             },
             async addModel(job, model) {
                 let url = "https://localhost:44368/api/Jobs/" + job.efJobId + "/model/" + model.efModelId;
@@ -112,11 +107,49 @@
                     body: JSON.stringify(data)
                 })
 
-                this.getjobs();
-                if (this.checkIfAdded(job, model)) {
-                    this.$alert("Model added", "Success")
+                this.$alert("Model added", "Success");
+                },
+            getJob(id) {
+                let url2 = "https://localhost:44368/api/jobs/" + id;
+                fetch(url2, {
+                    method: 'GET',
+                    credentials: 'include',
+                    headers: {
+                        'Authorization': 'Bearer' + " " + localStorage.getItem("token"),
+                        'Content-Type': 'application/json'
+                    }
+                }).then(res => res.json())
+                    .then(res => this.job = res)
+                    .then(res => this.modelsWithJob = res.models)
+                    .catch(error => alert("Error" + error));
+
+            },
+            checkIfAdded(modelToCompare) {
+                for (let model of this.modelsWithJob) {
+                    if (modelToCompare.firstName == model.firstName) {
+                        return false;
+                    }
                 }
-                
+
+                return true;
+            },
+            async deleteModel(job, model) {
+                let url = "https://localhost:44368/api/Jobs/" + job.efJobId + "/model/" + model.efModelId;
+
+                let data = {
+                    "jobId": job.efJobId,
+                    "modelId": model.efModelId
+                }
+
+                await fetch(url, {
+                    method: 'DELETE',
+                    credentials: 'include',
+                    headers: new Headers({
+                        'Authorization': 'Bearer' + " " + localStorage.getItem("token"),
+                        'Content-Type': 'application/json'
+                    }),
+                    body: JSON.stringify(data)
+                })
             },
             addjob: async function () {
                 this.$router.push('/jobs/create');
@@ -132,7 +165,7 @@
             this.checkUser()
             this.getjobs()
             if (this.isManager) {
-                this.getmodels()
+                this.getModels()
             }
         }
     }
@@ -165,7 +198,7 @@
         padding: 25px 30px;
         display: flex;
         justify-content: space-between;
-        max-width: 65%;
+        max-width: 85%;
         margin: 0 15% 0 15%;
     }
 
@@ -186,7 +219,7 @@
     }
 
     .responsive-table .col-2 {
-        flex-basis: 30%;
+        flex-basis: 25%;
     }
 
     .responsive-table .col-3 {
@@ -194,10 +227,10 @@
     }
 
     .responsive-table .col-4 {
-        flex-basis: 25%;
+        flex-basis: 20%;
     }
     .responsive-table .col-5 {
-        flex-basis: 15%;
+        flex-basis: 11%;
     }
 
     @media all and (max-width: 767px) {
