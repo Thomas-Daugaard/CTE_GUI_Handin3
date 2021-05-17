@@ -134,26 +134,13 @@
 
                 return true;
             },
-            //async deleteModel(job, model) {
-            //    let url = "https://localhost:44368/api/Jobs/" + job.efJobId + "/model/" + model.EfModelId;
-
-            //    let data = {
-            //        "jobId": this.job.efJobId,
-            //        "modelId": this.model.efModelId
-            //    }
-
-            //    await fetch(url, {
-            //        method: 'DELETE',
-            //        credentials: 'include',
-            //        headers: new Headers({
-            //            'Authorization': 'Bearer' + " " + localStorage.getItem("token"),
-            //            'Content-Type': 'application/json'
-            //        }),
-            //        body: JSON.stringify(data)
-            //    })
-            //},
             async deleteModel(job, model) {
-                let url = "https://localhost:44368/api/Jobs/" + job.efJobId + "/model/" + model.efModelId;
+                let url = "https://localhost:44368/api/Jobs/" + job.efJobId + "/model/" + model.EfModelId;
+
+                let data = {
+                    "jobId": this.job.efJobId,
+                    "modelId": this.model.efModelId
+                }
 
                 await fetch(url, {
                     method: 'DELETE',
@@ -162,10 +149,10 @@
                         'Authorization': 'Bearer' + " " + localStorage.getItem("token"),
                         'Content-Type': 'application/json'
                     }),
-                    
-
-                }).then(res => res.json()).catch(error => alert("error" + error));
+                    body: JSON.stringify(data)
+                })
             },
+           
            
             addjob: async function () {
                 this.$router.push('/jobs/create');
