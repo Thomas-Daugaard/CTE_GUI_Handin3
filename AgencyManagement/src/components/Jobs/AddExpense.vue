@@ -3,12 +3,6 @@
         <form class="form">
             <div>
                 <h1>Add Expenses</h1>
-                <div class="dropdown submit formEntry" style="padding-left: 0">
-                    <button class="dropbtn">Add model to expense</button>
-                    <div class="dropdown-content">
-                        <a v-for="(model, index) in models" :key="index" v-on:click="newExpense.modelid=model.efModelId; $alert('Model added');">{{ model.firstName }} {{ model.lastName }}</a>
-                    </div>
-                </div>
                 <input v-model="newExpense.date" class="name formEntry" type="datetime" placeholder="Enter Date" />
                 <input v-model="newExpense.text" class="name formEntry" type="text" placeholder="Enter Text" />
                 <input v-model="newExpense.amount" class="name formEntry" type="text" placeholder="Enter Amount" />
@@ -54,6 +48,9 @@
 
             },
             postExpense: function () {
+                var token = this.parseJwt();
+                this.newExpense.modelid = token.ModelId;
+
                 let url = "https://localhost:44368/api/Expenses";
                 fetch(url, {
                     method: 'POST',
@@ -64,6 +61,16 @@
                     }),
                     body: JSON.stringify(this.newExpense)
                 }).then(res => res.json()).catch(error => alert("Error" + error));
+            },
+            parseJwt() {
+                var token = localStorage.getItem("token");
+                var base64Url = token.split('.')[1];
+                var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+                var jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+                    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                }).join(''));
+
+                return JSON.parse(jsonPayload);
             }
         },
         mounted() {
@@ -75,55 +82,6 @@
 <style scoped>
     h1 {
         text-align: center;
-    }
-    /* Dropdown Button */
-    .dropbtn {
-        background-color: black;
-        color: white;
-        padding: 8px;
-        padding-left: 50px;
-        font-size: 20px;
-        border: none;
-    }
-
-    /* The container <div> - needed to position the dropdown content */
-    .dropdown {
-        position: relative;
-    }
-
-    /* Dropdown Content (Hidden by Default) */
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #f1f1f1;
-        width: 200px;
-        color: black;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 1;
-    }
-
-        /* Links inside the dropdown */
-        .dropdown-content a {
-            color: black;
-            padding: 8px;
-            text-decoration: none;
-            display: block;
-        }
-
-            /* Change color of dropdown links on hover */
-            .dropdown-content a:hover {
-                background-color: #ddd;
-            }
-
-    /* Show the dropdown menu on hover */
-    .dropdown:hover .dropdown-content {
-        display: block;
-    }
-
-    /* Change the background color of the dropdown button when the dropdown content is shown */
-    .dropdown:hover .dropbtn {
-        background-color: #95a5a6;
-        color: black;
     }
 
     a {
