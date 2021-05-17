@@ -119,7 +119,7 @@
 
             },
             checkIfAdded(modelToCompare) {
-                for (let model of modelsWithJob) {
+                for (let model of this.modelsWithJob) {
                     if (modelToCompare.firstName == model.firstName) {
                         return false;
                     }
