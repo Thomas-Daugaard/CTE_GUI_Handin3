@@ -3,8 +3,7 @@
         <form class="form">
             <div>
                 <h1>Add Expenses</h1>
-
-                <div class="dropdown">
+                <div class="dropdown submit formEntry" style="padding-left: 50px">
                     <button class="dropbtn">Add model</button>
                     <div class="dropdown-content">
                         <a v-for="(model, index) in models" :key="index" v-on:click="newExpense.modelid=model.efModelId; $alert('Model added');">{{ model.firstName }} {{ model.lastName }}</a>
@@ -92,19 +91,22 @@
 </script>
 
 <style scoped>
+    h1 {
+        text-align: center;
+    }
     /* Dropdown Button */
     .dropbtn {
         background-color: black;
         color: white;
         padding: 8px;
-        font-size: 14px;
+        padding-left: 50px;
+        font-size: 20px;
         border: none;
     }
 
     /* The container <div> - needed to position the dropdown content */
     .dropdown {
         position: relative;
-        display: inline-block;
     }
 
     /* Dropdown Content (Hidden by Default) */
@@ -112,7 +114,8 @@
         display: none;
         position: absolute;
         background-color: #f1f1f1;
-        max-width: 85px;
+        width: 200px;
+        color: black;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         z-index: 1;
     }
