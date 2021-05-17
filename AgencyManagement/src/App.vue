@@ -20,6 +20,8 @@
         </div>
 
         <router-view id="content" class="centerb" />
+
+
     </div>
 </template>
 
@@ -41,7 +43,8 @@
             listModels,
             createJob,
             listJobs,
-            modelDetails
+            modelDetails,
+
         },
         data() {
             return {
@@ -196,5 +199,6 @@
     b-carousel-slide {
         width: 100%;
         height: auto;
-    } 
+    }
+    
 </style>
