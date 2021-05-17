@@ -34,6 +34,7 @@
                         localStorage.setItem("token", token.jwt);
                         localStorage.removeItem("email");
                         localStorage.setItem("email", this.form.email);
+                        this.checkUser();
                         this.$root.$emit('authorize');
                         this.$router.push('Index');
 
@@ -43,8 +44,34 @@
                 } catch (err) {
                     alert("Error: " + err);
                 }
+
                 return;
-            }
+            },
+            checkUser: function () {
+                var token = this.parseJwt();
+
+                var userType = token["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+
+                if (userType == "Manager") {
+                    this.isManager = true;
+                    localStorage.setItem("isManager", true);
+                }
+
+                else {
+                    this.isManager = false;
+                    localStorage.setItem("isManager", false);
+                }
+            },
+            parseJwt() {
+                var token = localStorage.getItem("token");
+                var base64Url = token.split('.')[1];
+                var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+                var jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+                    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                }).join(''));
+
+                return JSON.parse(jsonPayload);
+            },
         }
     }
     

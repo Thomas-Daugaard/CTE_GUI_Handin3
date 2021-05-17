@@ -51,7 +51,8 @@
                 chosenjobid: 0,
                 modelid: 0,
                 showModal: false,
-                modalTitle: "Succes!"
+                modalTitle: "Succes!",
+                isManager: false
             }
         },
         components: {
@@ -155,15 +156,16 @@
                 this.$router.push('/jobs/create');
             },
             checkUser: function () {
-                if (localStorage.getItem("email") == "boss@m.dk")
+                if (localStorage.getItem("isManager") == "true") {
                     this.isManager = true;
+                }
                 else
                     this.isManager = false;
             }
         },
         mounted() {
-            this.checkUser()
             this.getjobs()
+            this.checkUser()
             if (this.isManager) {
                 this.getModels()
             }
