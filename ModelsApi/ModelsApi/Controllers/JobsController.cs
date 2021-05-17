@@ -51,8 +51,15 @@ namespace ModelsApi.Controllers
             }
         }
 
+
+        [HttpGet("models")]
+        public async Task<ActionResult<IEnumerable<EfJob>>> GetJobsWithModels()
+        {
+            return await _context.Jobs.Include(m=> m.JobModels).ThenInclude(m => m.Model).ToListAsync().ConfigureAwait(false);
+        }
+
         // GET: api/Jobs/5
-        [HttpGet("{id}")]
+            [HttpGet("{id}")]
         public async Task<ActionResult<Job>> GetJob(long id)
         {
             var job = await _context.Jobs.Where(j => j.EfJobId == id)
