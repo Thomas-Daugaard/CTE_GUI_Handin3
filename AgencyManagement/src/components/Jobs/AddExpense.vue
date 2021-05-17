@@ -40,22 +40,22 @@
             }
         },
         methods: {
-            getmodels:  function () {
-                let url = "https://localhost:44368/api/models";
+            //getmodels:  function () {
+            //    let url = "https://localhost:44368/api/models";
 
-                fetch(url, {
-                    method: 'GET',
-                    credentials: 'include',
-                    headers: {
-                        'Authorization': 'Bearer' + " " + localStorage.getItem("token"),
-                        'Content-Type': 'application/json'
-                    }
-                }).then(res => res.json())
-                    .then(res => this.models = res)
-                    .catch(error => alert("Error" + error));
-            },
+            //    fetch(url, {
+            //        method: 'GET',
+            //        credentials: 'include',
+            //        headers: {
+            //            'Authorization': 'Bearer' + " " + localStorage.getItem("token"),
+            //            'Content-Type': 'application/json'
+            //        }
+            //    }).then(res => res.json())
+            //        .then(res => this.models = res)
+            //        .catch(error => alert("Error" + error));
+            //},
             getjobmodels: function () {
-                let url2 = "https://localhost:44368/api/jobs/" + this.job.efJobId;
+                let url2 = "https://localhost:44368/api/jobs/"+this.chosenjobid;
                 fetch(url2, {
                     method: 'GET',
                     credentials: 'include',
@@ -64,11 +64,11 @@
                         'Content-Type': 'application/json'
                     }
                 }).then(res => res.json())
-                    .then(res => this.job = res)
+                    .then(res => this.job = res).then(res => this.jobmodels = res.jobmodels)
                     .catch(error => alert("Error" + error));
 
             },
-            setjobmodels: async function () {
+            setjobmodels: function () {
                 this.jobmodels = this.job.jobmodels;
             },
             postExpense: function () {
