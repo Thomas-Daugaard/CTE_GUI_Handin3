@@ -112,9 +112,9 @@
 
                 this.$alert("Model added", "Success");
                 },
-            getJob(id) {
+            async getJob(id) {
                 let url2 = "https://localhost:44368/api/jobs/" + id;
-                fetch(url2, {
+                await fetch(url2, {
                     method: 'GET',
                     credentials: 'include',
                     headers: {
@@ -159,6 +159,8 @@
                     body: JSON.stringify(data)
                 })
             },
+           
+           
             addjob: async function () {
                 this.$router.push('/jobs/create');
             },
