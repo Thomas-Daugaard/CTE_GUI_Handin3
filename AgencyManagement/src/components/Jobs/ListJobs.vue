@@ -46,6 +46,7 @@
         data() {
             return {
                 jobs: [],
+                allModels: [],
                 modelsWithJob: [],
                 models: [],
                 chosenjobid: 0,
@@ -87,6 +88,7 @@
 
                 }).then(res => res.json())
                     .then(res => this.models = res)
+                    .then(res => this.allModels = res)
                     .catch(error => alert("Error" + error));
 
             },
@@ -135,11 +137,16 @@
                 return true;
             },
             async deleteModel(job, model) {
-                let url = "https://localhost:44368/api/Jobs/" + job.efJobId + "/model/" + model.EfModelId;
+                let modelId = this.getModelId(model);
+
+                console.log(modelId);
+                console.log(this.allModels[0]);
+
+                let url = "https://localhost:44368/api/Jobs/" + job.efJobId + "/model/" + modelId;
 
                 let data = {
-                    "jobId": this.job.efJobId,
-                    "modelId": this.model.efModelId
+                    "jobId": job.efJobId,
+                    "modelId": modelId
                 }
 
                 await fetch(url, {
@@ -163,6 +170,13 @@
                 }
                 else
                     this.isManager = false;
+            },
+            getModelId(modelA) {
+                for (let modelB of this.allModels) {
+                    if (modelA.email == modelB.email) {
+                        return modelB.efModelId;
+                    }
+                }
             }
         },
         mounted() {
