@@ -18,7 +18,7 @@
                 <div v-if="isManager" class="dropdown col-5">
                     <button class="dropbtn" v-on:mouseover="getJob(job.efJobId)">Add model</button>
                     <div class="dropdown-content">
-                        <a v-if="checkIfAdded(model)" v-for="(model, index) in models" :key="index" v-on:click="addModel(job, model)">{{ model.firstName }} {{ model.lastName }}</a>
+                        <a v-for="(model, index) in models" :key="index" v-on:click="addModel(job, model)">{{ model.firstName }} {{ model.lastName }}</a>
                     </div>
                 </div>
 
