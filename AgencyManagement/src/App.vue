@@ -7,7 +7,7 @@
                 <b-collapse id="nav-collapse" is-nav>
                     <b-navbar-nav>
                         <b-nav-item v-if="!authorize"><router-link :to="'/login'">Login</router-link></b-nav-item>
-                        <b-nav-item v-if="authorize" v-on:click="logout"><router-link :to="'/'">Logout</router-link></b-nav-item>
+                        <b-nav-item v-if="authorize" v-on:click="logout"><router-link :to="'/index'">Logout</router-link></b-nav-item>
                         <b-nav-item v-if="authorize"><router-link :to="'/managers/create'">Managers</router-link></b-nav-item>
                         <b-nav-item v-if="authorize"><router-link :to="'/jobs/index'">Jobs</router-link></b-nav-item>
                         <b-nav-item v-if="authorize && isManager"><router-link :to="'/models/index'">Models</router-link></b-nav-item>
