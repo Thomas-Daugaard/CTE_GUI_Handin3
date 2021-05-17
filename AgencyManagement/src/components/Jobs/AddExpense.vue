@@ -7,7 +7,7 @@
                 <div class="dropdown">
                     <button class="dropbtn">Add model</button>
                     <div class="dropdown-content">
-                        <a v-for="(model, index) in jobmodels" :key="index" v-on:click="newExpense.modelid=model.efModelId; $alert('Model added');">{{ model.firstName }} {{ model.lastName }}</a>
+                        <a v-for="(model, index) in models" :key="index" v-on:click="newExpense.modelid=model.efModelId; $alert('Model added');">{{ model.firstName }} {{ model.lastName }}</a>
                     </div>
                 </div>
                 <input v-model="newExpense.date" class="name formEntry" type="datetime" placeholder="Enter Date" />
@@ -28,7 +28,6 @@
             return {
                 job: null,
                 models: [],
-                jobmodels: [],
                 newExpense: {
                     date: '',
                     text: '',
@@ -55,7 +54,7 @@
                     .catch(error => alert("Error" + error));
             },
             getjobmodels: function () {
-                let url2 = "https://localhost:44368/api/jobs/" + this.job.efJobId;
+                let url2 = "https://localhost:44368/api/jobs/" + this.newExpense.jobid;
                 fetch(url2, {
                     method: 'GET',
                     credentials: 'include',
@@ -65,7 +64,7 @@
                     }
                 }).then(res => res.json())
                     .then(res => this.job = res)
-                    .then(res => this.job.jobmodels = res.jobmodels)
+                    .then(res => this.models = res.models)
                     .catch(error => alert("Error" + error));
             },
             postExpense: function () {
