@@ -109,9 +109,9 @@
 
                 this.$alert("Model added", "Success");
                 },
-            getJob(id) {
+            async getJob(id) {
                 let url2 = "https://localhost:44368/api/jobs/" + id;
-                fetch(url2, {
+                await fetch(url2, {
                     method: 'GET',
                     credentials: 'include',
                     headers: {
@@ -133,13 +133,26 @@
 
                 return true;
             },
+            //async deleteModel(job, model) {
+            //    let url = "https://localhost:44368/api/Jobs/" + job.efJobId + "/model/" + model.EfModelId;
+
+            //    let data = {
+            //        "jobId": this.job.efJobId,
+            //        "modelId": this.model.efModelId
+            //    }
+
+            //    await fetch(url, {
+            //        method: 'DELETE',
+            //        credentials: 'include',
+            //        headers: new Headers({
+            //            'Authorization': 'Bearer' + " " + localStorage.getItem("token"),
+            //            'Content-Type': 'application/json'
+            //        }),
+            //        body: JSON.stringify(data)
+            //    })
+            //},
             async deleteModel(job, model) {
                 let url = "https://localhost:44368/api/Jobs/" + job.efJobId + "/model/" + model.efModelId;
-
-                let data = {
-                    "jobId": job.efJobId,
-                    "modelId": model.efModelId
-                }
 
                 await fetch(url, {
                     method: 'DELETE',
@@ -148,9 +161,11 @@
                         'Authorization': 'Bearer' + " " + localStorage.getItem("token"),
                         'Content-Type': 'application/json'
                     }),
-                    body: JSON.stringify(data)
-                })
+                    
+
+                }).then(res => res.json()).catch(error => alert("error" + error));
             },
+           
             addjob: async function () {
                 this.$router.push('/jobs/create');
             },
