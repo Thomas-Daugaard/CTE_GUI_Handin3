@@ -7,7 +7,7 @@
                 <div class="dropdown">
                     <button class="dropbtn">Add model</button>
                     <div class="dropdown-content">
-                        <a v-for="(model, index) in models" :key="index" v-on:click="newExpense.modelid=model.efModelId; $alert('Model added');">{{ model.firstName }} {{ model.lastName }}</a>
+                        <a v-for="(model, index) in jobmodels" :key="index" v-on:click="newExpense.modelid=model.efModelId; $alert('Model added');">{{ model.firstName }} {{ model.lastName }}</a>
                     </div>
                 </div>
                 <input v-model="newExpense.date" class="name formEntry" type="datetime" placeholder="Enter Date" />
@@ -28,6 +28,7 @@
             return {
                 job: null,
                 models: [],
+                jobmodels: [],
                 newExpense: {
                     date: '',
                     text: '',
@@ -39,10 +40,10 @@
             }
         },
         methods: {
-            getmodels: async function () {
+            getmodels:  function () {
                 let url = "https://localhost:44368/api/models";
 
-                await fetch(url, {
+                fetch(url, {
                     method: 'GET',
                     credentials: 'include',
                     headers: {
@@ -53,7 +54,21 @@
                     .then(res => this.models = res)
                     .catch(error => alert("Error" + error));
             },
-            postExpense: async function () {
+            getjobmodels: function () {
+                let url2 = "https://localhost:44368/api/jobs/" + this.job.efJobId;
+                fetch(url2, {
+                    method: 'GET',
+                    credentials: 'include',
+                    headers: {
+                        'Authorization': 'Bearer' + " " + localStorage.getItem("token"),
+                        'Content-Type': 'application/json'
+                    }
+                }).then(res => res.json())
+                    .then(res => this.job = res)
+                    .then(res => this.job.jobmodels = res.jobmodels)
+                    .catch(error => alert("Error" + error));
+            },
+            postExpense: function () {
                 let url = "https://localhost:44368/api/Expenses";
                 fetch(url, {
                     method: 'POST',
@@ -67,7 +82,8 @@
             }
         },
         mounted() {
-            this.getmodels()
+            //this.getmodels()
+            this.getjobmodels()
         }
     }
 </script>
