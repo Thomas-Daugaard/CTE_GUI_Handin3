@@ -1,5 +1,3 @@
-
-
 How to use: 
 
 1) Install missing npm packages by left-clicking on 'npm' under the 'ModelsManagement' project.
