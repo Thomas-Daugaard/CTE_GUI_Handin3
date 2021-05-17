@@ -18,7 +18,7 @@
                 <div v-if="isManager" class="dropdown col-5">
                     <button class="dropbtn" v-on:mouseover="getJob(job.efJobId)">Add model</button>
                     <div class="dropdown-content">
-                        <a v-for="(model, index) in models" :key="index" v-on:click="addModel(job, model)">{{ model.firstName }} {{ model.lastName }}</a>
+                        <a v-for="(model, index) in models" :key="index" v-if="checkIfAdded(model)"  v-on:click="addModel(job, model)">{{ model.firstName }} {{ model.lastName }}</a>
                     </div>
                 </div>
 
@@ -30,7 +30,6 @@
 
         <input class="submit formEntry" type="button" value="Add new job" v-on:click="addjob" />
 
-
     </div>
 </template>
 
@@ -41,6 +40,7 @@
         data() {
             return {
                 jobs: [],
+                modelsWithJob: [],
                 models: [],
                 chosenjobid: 0,
                 modelid: 0,
@@ -67,7 +67,7 @@
                     .then(res => this.jobs = res)
                     .catch(error => alert("Error" + error));
             },
-            getmodels: async function () {
+            getModels: async function () {
                 let url = "https://localhost:44368/api/models";
 
                 await fetch(url, {
@@ -82,17 +82,6 @@
                     .then(res => this.models = res)
                     .catch(error => alert("Error" + error));
 
-            },
-            checkIfAdded(modelToCompare) {
-                if (this.jobs.models == null) {
-                    return false;
-                }
-                for (let model of this.jobs.models) {
-                    if (model == modelToCompare) {
-                        return false;
-                    }
-                }
-                return true;
             },
             async addModel(job, model) {
                 let url = "https://localhost:44368/api/Jobs/" + job.efJobId + "/model/" + model.efModelId;
@@ -112,11 +101,31 @@
                     body: JSON.stringify(data)
                 })
 
-                this.getjobs();
-                if (this.checkIfAdded(job, model)) {
-                    this.$alert("Model added", "Success")
+                this.$alert("Model added", "Success");
+                },
+            getJob(id) {
+                let url2 = "https://localhost:44368/api/jobs/" + id;
+                fetch(url2, {
+                    method: 'GET',
+                    credentials: 'include',
+                    headers: {
+                        'Authorization': 'Bearer' + " " + localStorage.getItem("token"),
+                        'Content-Type': 'application/json'
+                    }
+                }).then(res => res.json())
+                    .then(res => this.job = res)
+                    .then(res => this.modelsWithJob = res.models)
+                    .catch(error => alert("Error" + error));
+
+            },
+            checkIfAdded(modelToCompare) {
+                for (let model of modelsWithJob) {
+                    if (modelToCompare.firstName == model.firstName) {
+                        return false;
+                    }
                 }
-                
+
+                return true;
             },
             addjob: async function () {
                 this.$router.push('/jobs/create');
@@ -132,7 +141,7 @@
             this.checkUser()
             this.getjobs()
             if (this.isManager) {
-                this.getmodels()
+                this.getModels()
             }
         }
     }
