@@ -25,7 +25,7 @@
                 <div v-if="isManager" class="dropdown col-5">
                     <button class="dropbtn" v-on:mouseover="getJob(job.efJobId)">Del model</button>
                     <div class="dropdown-content">
-                        <a v-for="(model, index) in models" :key="index" v-on:click="deleteModel(job, model); $alert('Model deleted');">{{ model.firstName }} {{ model.lastName }}</a>
+                        <a v-for="(model, index) in modelsWithJob" :key="index" v-on:click="deleteModel(job, model); $alert('Model deleted');">{{ model.firstName }} {{ model.lastName }}</a>
                     </div>
                 </div>
                 <div class="dropdown col-5">
