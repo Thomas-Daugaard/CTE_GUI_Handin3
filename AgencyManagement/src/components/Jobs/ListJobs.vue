@@ -29,12 +29,12 @@
                     </div>
                 </div>
                 <div class="dropdown col-7">
-                    <router-link :to="{name: 'AddExpense', params: {chosenjobid}}"><input type="button" class="dropbtn" v-on:click="chosenjobid=job.efJobId" value="Add Expense" /></router-link>
+                    <router-link v-if="!isManager" :to="{name: 'AddExpense', params: {chosenjobid}}"><input type="button" class="dropbtn" v-on:click="chosenjobid=job.efJobId" value="Add Expense" /></router-link>
                 </div>
             </li>
         </ul>
 
-        <input class="submit formEntry" type="button" value="Add new job" v-on:click="addjob" />
+        <input v-if="isManager" class="submit formEntry" type="button" value="Add new job" v-on:click="addjob" />
 
     </div>
 </template>
