@@ -138,10 +138,6 @@
             },
             async deleteModel(job, model) {
                 let modelId = this.getModelId(model);
-
-                console.log(modelId);
-                console.log(this.allModels[0]);
-
                 let url = "https://localhost:44368/api/Jobs/" + job.efJobId + "/model/" + modelId;
 
                 let data = {
@@ -159,8 +155,6 @@
                     body: JSON.stringify(data)
                 })
             },
-           
-           
             addjob: async function () {
                 this.$router.push('/jobs/create');
             },
