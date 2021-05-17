@@ -59,7 +59,7 @@ namespace ModelsApi.Controllers
         }
 
         // GET: api/Jobs/5
-            [HttpGet("{id}")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<Job>> GetJob(long id)
         {
             var job = await _context.Jobs.Where(j => j.EfJobId == id)
