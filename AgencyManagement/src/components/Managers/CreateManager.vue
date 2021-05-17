@@ -45,9 +45,10 @@
                     body: JSON.stringify(this.newmanager)
                 }).then(res => res.json()).catch(error => alert("Error" + error));
 
-             
-                    this.$router.push('/app');
-               
+                this.$alert('Manager Created', 'Success');
+                this.$router.push('/app');
+
+                
             }
         }
     }
