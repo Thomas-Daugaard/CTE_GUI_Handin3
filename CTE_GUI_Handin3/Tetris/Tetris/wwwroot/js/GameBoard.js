@@ -1,9 +1,9 @@
-﻿var myGamePiece;
+﻿let myGamePiece;
 
 function startGame() {
     myGameArea.start();
     myGamePiece = new Component(30, 30, "red", 10, 120);
-    setInterval(movePiece, 100);
+    setInterval(movePiece, 1000);
 }
 
 var myGameArea = {
@@ -27,5 +27,5 @@ function Component(width, height, color, x, y) {
 }
 
 function movePiece() {
-    myGamePiece.y -= 2;
+    myGamePiece.y -= 10;
 }

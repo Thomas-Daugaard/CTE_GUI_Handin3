@@ -66,8 +66,6 @@
                 }).then(res => res.json())
                     .then(res => this.jobs = res)
                     .catch(error => alert("Error" + error));
-
-
             },
             getmodels: async function () {
                 let url = "https://localhost:44368/api/models";
@@ -86,10 +84,10 @@
 
             },
             checkIfAdded(modelToCompare) {
-                if (this.job.models == null) {
+                if (this.jobs.models == null) {
                     return false;
                 }
-                for (let model of this.job.models) {
+                for (let model of this.jobs.models) {
                     if (model == modelToCompare) {
                         return false;
                     }
