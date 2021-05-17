@@ -65,8 +65,11 @@
                     }
                 }).then(res => res.json())
                     .then(res => this.job = res)
-                    .then(res => this.job.jobmodels = res.jobmodels)
                     .catch(error => alert("Error" + error));
+
+            },
+            setjobmodels: async function () {
+                this.jobmodels = this.job.jobmodels;
             },
             postExpense: function () {
                 let url = "https://localhost:44368/api/Expenses";
@@ -82,8 +85,8 @@
             }
         },
         mounted() {
-            //this.getmodels()
-            this.getjobmodels()
+            this.getjobmodels(),
+                this.setjobmodels()
         }
     }
 </script>
