@@ -74,7 +74,8 @@
             }
             },            
         mounted() {
-            this.receiveEvent()
+            this.receiveEvent();
+            this.$router.push('/index');
         }
     }
     
