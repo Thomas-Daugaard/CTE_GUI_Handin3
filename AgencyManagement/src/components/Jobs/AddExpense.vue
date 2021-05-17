@@ -61,6 +61,8 @@
                     }),
                     body: JSON.stringify(this.newExpense)
                 }).then(res => res.json()).catch(error => alert("Error" + error));
+
+                this.$alert('Expense added');
             },
             parseJwt() {
                 var token = localStorage.getItem("token");
