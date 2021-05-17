@@ -1,5 +1,3 @@
-
-
 How to use: 
 
 1) Start the API. 
@@ -11,7 +9,6 @@ How to use:
 
 6) logout and login with a model login. 
 7) Try out the different actions/tabs.  
-
 
 
 Enjoy!
