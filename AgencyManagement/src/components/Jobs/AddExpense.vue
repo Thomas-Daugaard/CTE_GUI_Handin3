@@ -39,20 +39,6 @@
             }
         },
         methods: {
-            //getmodels:  function () {
-            //    let url = "https://localhost:44368/api/models";
-
-            //    fetch(url, {
-            //        method: 'GET',
-            //        credentials: 'include',
-            //        headers: {
-            //            'Authorization': 'Bearer' + " " + localStorage.getItem("token"),
-            //            'Content-Type': 'application/json'
-            //        }
-            //    }).then(res => res.json())
-            //        .then(res => this.models = res)
-            //        .catch(error => alert("Error" + error));
-            //},
             getjobmodels: function () {
                 let url2 = "https://localhost:44368/api/jobs/" + this.newExpense.jobid;
                 fetch(url2, {
@@ -68,9 +54,6 @@
                     .catch(error => alert("Error" + error));
 
             },
-            setjobmodels: function () {
-                this.jobmodels = this.job.jobmodels;
-            },
             postExpense: function () {
                 let url = "https://localhost:44368/api/Expenses";
                 fetch(url, {
@@ -85,8 +68,7 @@
             }
         },
         mounted() {
-            this.getjobmodels(),
-                this.setjobmodels()
+            this.getjobmodels()
         }
     }
 </script>
