@@ -46,7 +46,7 @@
                 }).then(res => res.json()).catch(error => alert("Error" + error));
 
                 this.$alert('Manager Created', 'Success');
-                this.$router.push('/app');
+                this.$router.push('/index');
 
                 
             }
