@@ -8,6 +8,7 @@
                 <div class="col col-4">Location</div>
                 <div class="col-5"></div>
                 <div class="col-5"></div>
+                <div class="col-5"></div>
             </li>
             <li class="table-row" v-for="(job, index) of jobs" :key="index">
                 <div class="col col-1" data-label="Customer">{{job.customer}}</div>
@@ -21,8 +22,13 @@
                         <a v-for="(model, index) in models" :key="index" v-on:click="addModel(job, model); $alert('Model added');">{{ model.firstName }} {{ model.lastName }}</a>
                     </div>
                 </div>
-
-                <div>
+                <div v-if="isManager" class="dropdown col-5">
+                    <button class="dropbtn" v-on:mouseover="getJob(job.efJobId)">Del model</button>
+                    <div class="dropdown-content">
+                        <a v-for="(model, index) in models" :key="index" v-on:click="deleteModel(job, model); $alert('Model deleted');">{{ model.firstName }} {{ model.lastName }}</a>
+                    </div>
+                </div>
+                <div class="dropdown col-5">
                     <router-link :to="{name: 'AddExpense', params: {chosenjobid}}"><input type="button" class="dropbtn" v-on:click="chosenjobid=job.efJobId" value="Add Expense" /></router-link>
                 </div>
             </li>
@@ -118,6 +124,24 @@
                 }
                 
             },
+            async deleteModel(job, model) {
+                let url = "https://localhost:44368/api/Jobs/" + job.efJobId + "/model/" + model.efModelId;
+
+                let data = {
+                    "jobId": job.efJobId,
+                    "modelId": model.efModelId
+                }
+
+                await fetch(url, {
+                    method: 'DELETE',
+                    credentials: 'include',
+                    headers: new Headers({
+                        'Authorization': 'Bearer' + " " + localStorage.getItem("token"),
+                        'Content-Type': 'application/json'
+                    }),
+                    body: JSON.stringify(data)
+                })
+            },
             addjob: async function () {
                 this.$router.push('/jobs/create');
             },
@@ -165,7 +189,7 @@
         padding: 25px 30px;
         display: flex;
         justify-content: space-between;
-        max-width: 65%;
+        max-width: 85%;
         margin: 0 15% 0 15%;
     }
 
@@ -186,7 +210,7 @@
     }
 
     .responsive-table .col-2 {
-        flex-basis: 30%;
+        flex-basis: 25%;
     }
 
     .responsive-table .col-3 {
@@ -194,10 +218,10 @@
     }
 
     .responsive-table .col-4 {
-        flex-basis: 25%;
+        flex-basis: 20%;
     }
     .responsive-table .col-5 {
-        flex-basis: 15%;
+        flex-basis: 11%;
     }
 
     @media all and (max-width: 767px) {
